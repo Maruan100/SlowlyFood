@@ -1,0 +1,27 @@
+<header>
+    <div class="nav-menu">
+      <nav class="nav-menu__main">
+        <input type="checkbox" id="nav" class="hidden">
+        <label for="nav" class="nav-btn">
+          <i></i>
+          <i></i>
+          <i></i>
+        </label>
+        <div class="nav-menu__logo">
+          <a [routerLink]="['/']"> <img src="../../../assets/icons/logo12.png" width="125px" height="48px" alt=""></a>
+        </div>
+        <div id="cart" class="nav-shopping__menu">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="nav-menu__display">
+          <ul class="nav-menu__list">
+            <li class="nav-menu__item"> <a [routerLink]="['/carta-de-platos']" [routerLinkActive]="['active']">Menus</a> </li>
+            <li class="nav-menu__item"><a href="#">Servicio a empresas</a></li>
+            <li class="nav-menu__item"><a href="#">¿Como funciona?</a></li>
+            <li class="nav-menu__item"><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <!--////Carrito de compra////-->
+    </header>

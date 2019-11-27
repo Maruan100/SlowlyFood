@@ -1,0 +1,130 @@
+.filter-color{
+    font-size: 22px;
+    }
+    .background{
+        background-color:#3FC1C9;
+    width: -webkit-fill-available;
+    position: absolute;
+    }
+    a{
+      color:  black;
+    }
+    .filter{
+      display: flex;
+      flex-direction: column;
+      float: right;
+      align-items: center;
+      margin-top: 15px;
+      position: relative;
+      left: -13px;
+      cursor: pointer;
+    }
+    .primary{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 15px 0px 0px;
+    }
+    .our-cart{
+      font-size: 32px;
+      text-align: left;
+      color: #fff;
+      margin-left: 20px;
+    }
+    .foods__plato__txt{
+      font-size: 18px;
+      font-weight: bolder;
+      cursor: pointer;
+    }
+    
+    .foods__plato__info{
+      max-width: 190px;
+    }
+    .foods{
+      display: block;
+      width: auto;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 90px 0 0 0;
+      background-color: #F5F5F5;
+      box-shadow: 0px 20px 50px #333;
+    }
+    
+    .foods__container{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+    .foods__plato{
+      margin-top: 50px;
+      margin-left: 45px;
+    
+    }
+    
+    .foods__plato img {
+    width: 300px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    cursor: pointer;
+    box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.12);
+    }
+    .foods__plato img:hover{
+      box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.3);
+    }
+    
+    .foods__plato__add{
+      float: right;
+      position: relative;
+      top: -69px;
+      font-size: 19px;
+      cursor: pointer;
+      background-color: #3FC1C9;
+      color: #fff;
+      padding: 12px;
+      border-radius: 12px;
+    }
+    .btn--category{
+        padding: 12px 12px;
+        background-color: #fff;
+        color: #333;
+        letter-spacing: 0px;
+        margin: 0;
+       flex: none;
+       margin-left: 3px;
+    }
+    .category{
+      display: flex;
+    justify-content: space-between;
+    align-self: center;
+    width: 100%;
+    padding-left: 12px;
+    overflow-x: scroll;
+    }
+    
+    .foods__plato__price{
+      font-size: 24px;
+    }
+    
+    .foods__plato__add i {
+      margin-right: 5px;
+    }
+    @media screen and (min-width: 1024px){
+    
+    .foods__container{
+      align-items: center;
+      flex-direction: row;
+      display: flex;
+      justify-content: space-evenly;
+    }
+    .category{
+      justify-content: flex-start;
+      overflow: inherit;
+      margin-left: 39px;
+    }
+    .our-cart{
+      margin-left: 60px;
+    }
+    }
+    
