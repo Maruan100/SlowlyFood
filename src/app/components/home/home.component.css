@@ -34,7 +34,6 @@
         color: #fff;
         margin: 33px;
         line-height: 1.37;
-        width: 83%;
   }
   
   /* ------------MENU---------- */
@@ -152,75 +151,7 @@
     margin-top: 4px;
   }
   
-  .formule{
-    background-color: #fff;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0px 15px;
-  height: 420px;
-  text-align: center;
-  }
-  
-  .form{
-    margin-top: 15px;
-    width: 100%;
-    position: relative;
-    height: auto;
-    overflow: hidden;
-  
-  }
-  .form__input {
-    width: 100%;
-    height: 100%;
-    color: #333;
-    padding-top: 15px;
-    border: none;
-    outline: none;
-    margin-top: 15px;
-    font-size: 19px;
-  }
-  
-  .form__label {
-    position: absolute;
-    bottom: 0px;
-    left: 0%;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    border-bottom: 1px solid #333;
-  }
-  
-  .form__label::after{
-    content: "";
-    position: absolute;
-    left: 0px;
-    bottom: -1px;
-    height: 100%;
-    width: 100%;
-    border-bottom: 2px solid #3FC1C9;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-  }
-  .content-name{
-    position: absolute;
-    bottom: 5px;
-    left: 0px;
-    transition: all 0.3 ease;
-  }
-  .form__input:focus + .label-name .content-name,
-  .form__input:valid + .label-name .content-name{
-    transform: translateY(-150%);
-    font-size: 14px;
-    color: #3FC1C9;
-  }
-  
-  .form__input:focus + .label-name::after,
-  .form__input:valid + .label-name::after{
-    transform: translateX(0%);
-  }
-  
-  
+ 
   #nav:checked+.nav-btn {
     transform: rotate(45deg);
   }
@@ -345,31 +276,6 @@
     align-content: center;
   }
   
-  .modal__text {
-    background: #3FC1C9;
-    width: 280px;
-    color: #fff;
-    border: 2px solid #3FC1C9;
-    padding: 9px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    font-size: 22px;
-    position: relative;
-    justify-content: center;
-    text-align: center;
-    transition: transform 0.2s;
-    cursor: pointer;
-    box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.12);
-    margin-bottom: 24px;
-  }
-  
-  .modal__text:hover {
-    background-color: #fff;
-    color: #333;
-    border: 2px solid #3FC1C9;
-    box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.3);
-      transform:scale(1.1);
-  }
   
   h1 {
     font-weight: bold;
@@ -459,9 +365,7 @@
   }
   */
   @media screen and (min-width: 1024px) {
-    .menus-btn{
-      display: none;
-    }
+
     .btn:hover {
       background-color: #fff;
       border-color: #3FC1C9;
@@ -476,10 +380,8 @@
   
     .title__text{
       font-size: 42px;
-      text-align: left;
           color: #fff;
           margin: 33px;
-          margin-left: 52px;
           line-height: 1.37;
     }
   

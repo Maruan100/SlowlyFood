@@ -18,32 +18,21 @@
           </div>
           
         <div class="foods__container">
-          <div  class="foods__plato">
-              <a [routerLink]="['/food-info']" >
 
-            <h4 class="foods__plato__txt">Bocadillo Jamon Iberico</h4>
-            <p class="foods__plato__info" >Con pan de centeno y queso manchego</p>
-            <img src="https://d1cdwwbxrcefmn.cloudfront.net/plate_photos/apeteat_2018_bocatinjamonyorkquesoytomate_exp.jpg" alt="">
-            <h4 class="foods__plato__price" >2.99€</h4>
-            <span class="foods__plato__add" > <i class="fas fa-cart-plus"> </i>Añadir al carrito</span>
-          </a>
-          </div>
-          <div class="foods__plato">
-            <h4 class="foods__plato__txt">Bocadillo Jamon Iberico</h4>
-            <p class="foods__plato__info" >Con pan de centeno y queso manchego</p>
-            <img src="https://d1cdwwbxrcefmn.cloudfront.net/plate_photos/apeteat_2018_bocatinjamonyorkquesoytomate_exp.jpg" alt="">
-            <h4 class="foods__plato__price" >2.99€</h4>
-            <span class="foods__plato__add" > <i class="fas fa-cart-plus"> </i>Añadir al carrito</span>
-          </div>
-          <div class="foods__plato">
-            <h4 class="foods__plato__txt">Bocadillo Jamon Iberico</h4>
-            <p class="foods__plato__info" >Con pan de centeno y queso manchego</p>
-            <img src="https://d1cdwwbxrcefmn.cloudfront.net/plate_photos/apeteat_2018_bocatinjamonyorkquesoytomate_exp.jpg" alt="">
-            <h4 class="foods__plato__price" >2.99€</h4>
-            <span class="foods__plato__add" > <i class="fas fa-cart-plus"> </i>Añadir al carrito</span>
-          </div>
+            <div *ngFor="let plato of platos" class="foods__plato">
+                <a [routerLink]="['/carta/plato',plato._id]" >
+              <h4 class="foods__plato__txt">{{plato.name}}</h4>
+              <p class="foods__plato__info" >{{plato.title}}</p>
+              <img src="{{plato.image}}" alt="">
+              <h4 class="foods__plato__price" >{{plato.price | currency: " "  }}€</h4>
+              </a>
+            <a [routerLink]="['/pago']"> <span class="foods__plato__add" > <i class="fas fa-cart-plus"> </i>Añadir al carrito</span> </a> 
+            
+            </div>
+
         </div>
-      
         </div>
         </main>
+
+        <app-footer></app-footer>
     </div>

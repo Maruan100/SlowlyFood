@@ -9,31 +9,30 @@
   padding-right: 35px;
     border-radius: 12px;
     text-transform: uppercase;
-  
   }
-
-  .background{
-      background-color: #fff;
+  .fa-drumstick-bite{
+    margin-right: 8px;
   }
   .card__description-btn{
-      margin-top: 6px;
+      margin-top: 12px;
   }
   .foods__plato__add i{
     padding-right: 12px;
   }
   
   .card {
-    margin-top: 8px;
-    display: flex;
     flex-direction: column;
-    box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.12);
+    background-color: #fff;
+    margin-top: -1px;
+
   }
   
   .card_image img {
     width: 375px;
     height: 250px;
     margin-bottom: -35px;
-    border-radius: 10px;
+    margin-right: 12px;
+    border-radius:4px;
   }
   .card_image_back-btn{
     position: relative;
@@ -78,12 +77,14 @@
         text-align: left;
         padding: -20px;
         margin-top: 30px;
-        margin-left: 35px;
-        margin-right: 35px;
+        margin-left: 25px;
+        margin-right: 25px;
+        display: flex;
+    justify-content: space-around
   }
   
   .card_info p{
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
   }
   .card_info_content{
@@ -92,11 +93,6 @@
     flex-direction: column;
   }
   
-  .card_info_nutrition{
-    display: inline-flex;
-    flex-direction: column;
-     margin-left: 25px;
-  }
   .card_info_title h3{
     text-align: center;
     font-size: 16px;
@@ -107,5 +103,97 @@
   }
   .card__description_price{
     margin-top: -20px;
+  }
+
+  .card_info-container{
+    display: flex;
+  }
+  
+  .card_info-left{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .card_info-rigt{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card_info-text{
+    font-size: 15px;
+    font-weight: bolder;
+    text-transform: uppercase;
+  }
+  
+  .card_info-number{
+    margin-top: -7px;
+    font-size: 16px;
+  }
+  
+  @media screen and (min-width: 1024px){
+    .cart-top{
+      padding-bottom: 30px;
+      padding-top: 30px;
+    }
+
+    .card_image img {
+      width: 655px;
+      height: 440px;
+      margin-left: 30px;
+      margin-top: 20px;
+    }
+    
+    .card_image_back-btn{
+      display: none;
+    }
+    .card_image{
+      display: inline;
+    }
+
+    .card_info{
+      display: inline-flex;
+      justify-content: space-between;
+    }
+    .card_info-1{
+      padding-right: 30px;
+    }
+  
+    .card-description{
+      display: inline-flex;
+      position: absolute;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .card__description_info{
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  
+    .card__description_info p{
+      font-size: 24px;
+      text-align: left;
+    }
+    .card-description_title{
+      font-size: 28px;
+      margin-top: 20px;
+    }
+
+    .foods__plato__add{
+      padding: 16px;
+      padding-left: 55px;
+      padding-right: 55px;
+    }
+    .card__description-btn {
+      margin-top: 48px;
+      
+    }
+    .card__description_price{
+      font-size: 24px;
+    }
+  
+  
   }
   

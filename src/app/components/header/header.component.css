@@ -4,7 +4,7 @@
     max-height: 100%;
     padding: 0px 18px 0 18px;
     background-color: #3FC1C9;
-    height: 59px;
+    height: 55px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -44,6 +44,7 @@
     width: 100%;
     text-align: right;
     margin-bottom: 10px;
+    transition: 150ms all;
   }
   
   .nav-menu__item:nth-child(1) a {

@@ -3,14 +3,14 @@
       <h1 class="title__text">DISFRUTA DE UN ALMUERZO RICO Y SANO EN CULQUIER MOMENTO! <span class="icon-truck"></span> </h1>
     </div>
     <div class="menus-btn">
-        <a [routerLink]="['/carta-de-platos']" [routerLinkActive]="['active']" class="modal__text" role="button">A comer!</a>
+        <a [routerLink]="['/carta']" [routerLinkActive]="['active']" class="modal__text" role="button">A comer!</a>
       </div>
     <!-- MODAL COMPLETA -->
     <div class="mainmodal">
       <a href="#modal" class="modal__text" role="button">Acceder a cuenta</a>
       <div id="modal" class="modal">
         <div class="modal__body">
-          <a href="#" class="modal__close">&times;</a>
+          <a href="#" class="modal__close">&times; </a>
           <!-- CONTENIDO DE MODAL -->
           <div class="container">
             <div class=" formule form-container__sing-in">
@@ -32,8 +32,8 @@
                 </div>
                 <div class="form">
                   <div class="form-name">
-                    <input required class="form__input" type="password" name="name" value="">
-                    <label class="form__label label-name" for="name">
+                    <input required class="form__input" type="password" name="password" value="">
+                    <label class="form__label label-name" for="password">
                       <span class="content-name">Contraseña</span>
                     </label>
                   </div>
@@ -62,7 +62,7 @@
   
               <div class="form">
                 <div class="form-name">
-                  <input required class="form__input" type="password" name="name" value="">
+                  <input required class="form__input" type="name" name="name" value="">
                   <label class="form__label label-name" for="name">
                     <span class="content-name">Nombre</span>
                   </label>
@@ -82,12 +82,12 @@
                 <div class="form-name">
                   <input required class="form__input" type="password" name="name" value="">
                   <label class="form__label label-name" for="name">
-                    <span class="content-name">Contrase単a</span>
+                    <span class="content-name">Contraseña</span>
                   </label>
                 </div>
   
               </div>
-              <button type="button" class="btn">registrarse</button>
+              <button type="button" class="btn">Registrarse</button>
             </div>
           </div>
         </div>

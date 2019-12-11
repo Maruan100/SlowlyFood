@@ -1,56 +1,73 @@
-<div class="background" >
+<div>
               <main class="card">
-                <div>
+                <div class="cart-top" >
                   <div class="card_image">
-                    <img src="https://d1cdwwbxrcefmn.cloudfront.net/plate_photos/apeteat_2018_bocatinjamonyorkquesoytomate_exp.jpg" alt="">
-                    <a class="card_image_back-btn" [routerLink]="['/carta-de-platos']" href=""> <i class="fas fa-arrow-left"></i>  Volver atras</a>
+                    <img src="{{plato.image}}" alt="">
+                    <a class="card_image_back-btn" [routerLink]="['/carta']" href=""> <i class="fas fa-arrow-left"></i>  Volver atras</a>
                   </div>
             
                   <div class="card-description">
             
                     <div class="card-description_name">
-                      <h2 class="card-description_title">BOCADILLO JAMON IBERICO</h2>
+                      <h2 class="card-description_title">{{plato.name}}</h2>
                     </div>
             
                     <div class="card__description_info">
-                      <p>Bocadillo clasico de jamon york y tomate
-                        con pan de centeno recien horneado y queso
-                        manchego en lonchas.
+                      <p>{{plato.description}}
                       </p>
                     </div>
                     <div class="card__description_price">
-                <h3>Precio: 2.99€</h3>
+                <h3>Precio: {{plato.price | currency: " "  }}€</h3>
                     </div>
-            
+
                     <div class="card__description-btn">
-                      <span class="foods__plato__add"> <i class="fas fa-plus"></i>Añadir al carrito</span>
+                       <a [routerLink]="['/pago']"> <span class="foods__plato__add"> <i class="fas fa-plus"></i>Añadir al carrito</span> </a>
                     </div>
               </div>
                   <!-- info prudcto -->
                   <div class="card_info">
-                  <div class="card_info_content">
-                    <div>
-                  <p>Cantidad: 230G</p>
-                    </div>
-                    <div>
-              <p>PREPARACION: ABRIR EL CONTENIDO DEL LA BOLSA Y CONSUMIR</p>
-                    </div>
-                    </div>
-            
-                    <div class="card_info_nutrition">
                       <div>
-                    <p  class="alergenos">ALERGENOS:  <i class="fas fa-drumstick-bite"></i> <i class="fas fa-bread-slice"> </i> </p>
-                      </div>
-                      </div>
-            
-                      <hr>
-                      <div class="card_info_title">
-                <h3>VALOR NUTRICIONAL POR 100G</h3>
-                      </div>
-            
-                  </div>
+                      <p class="card_info-1" >Cantidad: 320G</p>
+                    </div>
+                    <div>
+                      <p>ALERGENOS:  <i class="fas fa-drumstick-bite"></i> <i class="fas fa-bread-slice"> </i> </p>
+                    </div>
+                        </div>
+
+                       
                 </div>
-            
-            
+                <hr>
+
+                <div class="card_info_title">
+                    <h3>VALOR NUTRICIONAL POR 100G</h3>
+                          </div>
+
+                <div class="card_info-container">
+                  <div class="card_info-left">
+    
+                    <p class="card_info-text">Calorias</p>
+                    <p class="card_info-number" >240,16g</p>
+                    <p class="card_info-text" >Carbohidratos</p>
+                    <p class="card_info-number">43,3g</p>
+                    <p class="card_info-text" >Azucares</p>
+                    <p class="card_info-number">43,3g</p>
+                    <p class="card_info-text" >Grasas saturada</p>
+                    <p class="card_info-number">43,3g</p>
+    
+                  </div>
+    
+                  <div class="card_info-rigt">
+    
+                      <p class="card_info-text">Proteinas</p>
+                      <p class="card_info-number" >240,16g</p>
+                      <p class="card_info-text" >Grasas</p>
+                      <p class="card_info-number">43,3g</p>
+                      <p class="card_info-text" >Sal</p>
+                      <p class="card_info-number">43,3g</p>
+    
+                  </div>
+              </div>
               </main>
 </div>
+
+<app-footer></app-footer>

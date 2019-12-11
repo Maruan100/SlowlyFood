@@ -3,15 +3,6 @@
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
 }
-body{
-  overflow: unset;
-}
-.fuera{
-  background-color: #3FC1C9;
-  opacity: 1;
-  overflow: auto;
-}
-
 a{
   text-decoration:none;
 }
@@ -29,6 +20,31 @@ body {
   font-size: 26px;
 }
 
+.modal__text {
+  background: #3FC1C9;
+  width: 280px;
+  color: #fff;
+  border: 2px solid #3FC1C9;
+  padding: 9px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-size: 22px;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.12);
+  margin-bottom: 24px;
+  transition: 300ms all;
+}
+
+.modal__text:hover {
+  background-color: #fff;
+  color: #333;
+  border: 2px solid #3FC1C9;
+  box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.3);
+    transform:scale(1.1);
+}
 
 .btn{
   border-radius: 20px;
@@ -43,7 +59,7 @@ body {
   padding: 12px 65px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: transform 30s ease-in;
+  transition: 300ms all;
 }
 
 .btn--category{
@@ -52,14 +68,83 @@ body {
   color: #333;
   letter-spacing: 0px;
   margin: 0;
- flex: none;
+  flex: none;
  margin-left: 3px;
 }
 
 
+
+.formule{
+  background-color: #fff;
+display: flex;
+justify-content: center;
+flex-direction: column;
+padding: 0px 15px;
+height: 420px;
+text-align: center;
+}
+
+.form{
+  margin-top: 15px;
+  width: 100%;
+  position: relative;
+  height: auto;
+  overflow: hidden;
+
+}
+.form__input {
+  width: 100%;
+  height: 100%;
+  color: #333;
+  padding-top: 15px;
+  border: none;
+  outline: none;
+  margin-top: 15px;
+  font-size: 19px;
+}
+
+.form__label {
+  position: absolute;
+  bottom: 0px;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid #333;
+}
+
+.form__label::after{
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  height: 100%;
+  width: 100%;
+  border-bottom: 2px solid #3FC1C9;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+.content-name{
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  transition: all 0.3 ease;
+}
+.form__input:focus + .label-name .content-name,
+.form__input:valid + .label-name .content-name{
+  transform: translateY(-150%);
+  font-size: 14px;
+  color: #3FC1C9;
+}
+
+.form__input:focus + .label-name::after,
+.form__input:valid + .label-name::after{
+  transform: translateX(0%);
+}
+
 app-home{
     display: block;
-    background-image: url('https://image.freepik.com/foto-gratis/marco-plano-laico-granos-fondo-estuco_23-2148287506.jpg');
+    background-image: url('https://image.freepik.com/foto-gratis/carne-pollo-parrilla-salsa-barbacoa_140725-1145.jpg');
     width: 100%;
     height: 120%;
     background-repeat: no-repeat;
@@ -75,13 +160,10 @@ app-home{
   app-home {
     display: block;
     width: 100%;
-    height: calc(100vh - 65px);
+    height: calc(100vh - 56px);
     background-image: url('http://www.caterinadiet.com/img/cms/Slider%202.png');
     background-size: cover;
     position: absolute;
-  }
-  #home-section{
-    padding: 0;
   }
 }
 

@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { FoodListComponent } from './components/food-list/food-list.component';
 import { FoodCardInfoComponent } from './components/food-card-info/food-card-info.component';
+import { CartShoppingComponent } from './components/cart-shopping/cart-shopping.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 
 const appRoutes: Routes = [
@@ -11,13 +13,17 @@ const appRoutes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'carta-de-platos',
+    path: 'carta',
     component: FoodListComponent
   },
   {
-    path: 'food-info',
+    path: 'carta/plato/:id',
     component: FoodCardInfoComponent
-  }
+  },
+  {
+    path: 'pago',
+    component: PaymentComponent
+  },
 ];
 
 @NgModule({

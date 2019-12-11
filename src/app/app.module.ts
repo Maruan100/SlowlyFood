@@ -8,6 +8,9 @@ import { FoodListComponent } from './components/food-list/food-list.component';
 import { CartShoppingComponent } from './components/cart-shopping/cart-shopping.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FoodCardInfoComponent } from './components/food-card-info/food-card-info.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,14 @@ import { FoodCardInfoComponent } from './components/food-card-info/food-card-inf
     FoodListComponent,
     CartShoppingComponent,
     HeaderComponent,
-    FoodCardInfoComponent
+    FoodCardInfoComponent,
+    FooterComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
     
   ],
   providers: [],
