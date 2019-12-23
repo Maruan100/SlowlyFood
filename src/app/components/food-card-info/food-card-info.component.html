@@ -2,7 +2,7 @@
               <main class="card">
                 <div class="cart-top" >
                   <div class="card_image">
-                    <img src="{{plato.image}}" alt="">
+                    <img src="{{plato.image_xl}}" alt="">
                     <a class="card_image_back-btn" [routerLink]="['/carta']" href=""> <i class="fas fa-arrow-left"></i>  Volver atras</a>
                   </div>
             
@@ -21,13 +21,13 @@
                     </div>
 
                     <div class="card__description-btn">
-                       <a [routerLink]="['/pago']"> <span class="foods__plato__add"> <i class="fas fa-plus"></i>Añadir al carrito</span> </a>
+                       <a  (click)="addToCart(plato)" ><span class="foods__plato__add"> <i class="fas fa-plus"></i>Añadir al carrito</span> </a>
                     </div>
               </div>
                   <!-- info prudcto -->
                   <div class="card_info">
                       <div>
-                      <p class="card_info-1" >Cantidad: 320G</p>
+                      <p class="card_info-1" >Cantidad: {{plato.cantidad}}G</p>
                     </div>
                     <div>
                       <p>ALERGENOS:  <i class="fas fa-drumstick-bite"></i> <i class="fas fa-bread-slice"> </i> </p>
@@ -36,7 +36,7 @@
 
                        
                 </div>
-                <hr>
+               
 
                 <div class="card_info_title">
                     <h3>VALOR NUTRICIONAL POR 100G</h3>

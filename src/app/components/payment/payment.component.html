@@ -1,236 +1,256 @@
-<div class="body" >
-    <main class="container">
-        <form action="">
+<div class="body">
+  <main class="container">
+    <div *ngIf="!isLogged" class="step-1">
+      <div class="step-text">
+        <div class="step-icon"><i class="fas fa-user"></i></div>
+        <h3>Añadir Cuenta</h3>
+      </div>
+      <div class="form-container__social">
+        <a  (click)="onLoginGoogle()" role="button" class="social social--g"><span class="icon-google"></span></a>
+        <a (click)="onLoginFacebook()"  class="social social--f"><span class="icon-facebook-square"></span></a>
+        <a href="#" class="social social--t"><span class="icon-twitter"></span></a>
+      </div>
+
+      <div class="user-sesion">
+        <h4 id="text-user-register" (click)="addRegisterMenu()" class="active">Registrarse</h4>
+        <span></span>
+        <h4 id="text-user" (click)="addUserMenu()" >Iniciar Sesion</h4>
+      </div>
+
+      <form #formSignIn="ngForm"  id="register-form"  (ngSubmit)="OnregisterUser(formSignIn)" action="">
+        <div class="container-form">
+        <div class="form">
+            <div class="form-name">
+              <input pattern="[a-zA-Z]+" ngModel #registName="ngModel" [(ngModel)]="name" required class="form__input" type="name" name="name" value="">
+              <label class="form__label label-name" for="name">
+                <span  *ngIf="!registName.dirty || !registName.valid  && !registName.touched" class="content-name">Nombre</span>
+                <span *ngIf="!registName.valid && registName.touched" class="content-name red">Nombre no valido*</span>
+              </label>
+            </div>
+          </div> 
+
+          <div class="form">
+            <div class="form-name">
+              <input ngModel #registEmail="ngModel"  [(ngModel)]="Registeremail" required class="form__input" type="email" name="email" value="">
+              <label class="form__label label-name" for="email">
+                <span *ngIf="!registEmail.dirty || !registEmail.valid" class="content-name">Email</span>
+                <span *ngIf="!registEmail.valid && registEmail.touched" class="content-name red">Email no valido*</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form">
+            <div class="form-name">
+              <input ngModel #registPassword="ngModel" [(ngModel)]="registerPass"  required class="form__input" type="password" name="password" value="">
+              <label class="form__label label-name" for="password">
+                <span *ngIf="!registPassword.dirty || !registPassword.valid" class="content-name">Contraseña</span>
+                <span *ngIf="!registPassword.valid && registPassword.touched" class="content-name red">Contraseña no valido*</span>
+              </label>
+            </div> 
+          </div>
+
+       <div class="btn-container"  >
+        <button [disabled]="!formSignIn.valid"  type="submit" class="modal__text">Registrarse</button>
+       </div   >
+        </div>
+      </form>
+
+
+      <form #formLogin="ngForm" id="user-form" (ngSubmit)="onLoginMail()" class="hide" action="">
+        <div class="container-form">
+        <div class="form">
+            <div class="form-name">
+              <input #loginMail="ngModel" [(ngModel)]="email" required class="form__input" type="email" name="email">
+              <label class="form__label label-name" for="email">
+                <span *ngIf="!loginMail.dirty && !loginMail.valid"  class="content-name">Email</span>
+                <span *ngIf="!loginMail.valid && loginMail.touched" class="content-name red">Email no valido*</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form">
+            <div class="form-name">
+              <input #loginPass="ngModel"  [(ngModel)]="pass" required class="form__input" type="password" name="password" value="">
+              <label class="form__label label-name" for="password">
+                <span *ngIf="!loginPass.dirty || !loginPass.valid && !loginPass.touched" class="content-name">Contraseña</span>
+                <span *ngIf="!loginPass.valid && loginPass.touched" class="content-name red">Contraseña no valida*</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="error" *ngIf="errors" >
+            {{errors}}!
+          </div>
+
+
+        <div class="btn-container">
+        <button [disabled]="!formLogin.valid"  type="submit" class="modal__text">Iniciar Sesion</button>
+        </div>
+      </div>
+      </form>
+    </div>
+
+
+    <form #formPayment="ngForm" (ngSubmit)="onLoginMail()" action="">
+      <div class="container-form2" >
     <div class="step-1">
+      <div>
         <div class="step-text">
-            <div class="step-icon"><i class="fas fa-user"></i></div>
-            <h3>1.Añadir Cuenta</h3>
+          <div class="step-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <h3>1.Direccion</h3>
         </div>
-        <div class="user-sesion">
-            <h4 class="active">Registrarse</h4>
-            <span></span>
-            <h4>Iniciar Sesion</h4>
+      </div>
+
+      <div class="form">
+        <div class="form-mail">
+          <input #streetForm="ngModel"  [(ngModel)]="street"  required class="form__input" type="text" name="street" value="" />
+          <label class="form__label label-name" for="street">
+            <span *ngIf="!streetForm.dirty && !streetForm.valid  && !streetForm.touched"  class="content-name">Calle*</span>
+            <span *ngIf="!streetForm.valid && streetForm.touched" class="content-name red">Calle no valida*</span>
+          </label>
         </div>
+      </div>
 
-       
-            <div class="form">
-                <div class="form-mail">
-                    <input required class="form__input" type="email" name="name" value="">
-                    <label class="form__label label-name" for="name">
-                        <span class="content-name">Email*</span>
-                    </label>
-                </div>
-            </div>
-        
-           
-
-            <div class="name-and-surname">
-
-
-                <div class="form form-md">
-                    <div class="form-mail">
-                        <input required class="form__input" type="text" name="mail" value="">
-                        <label class="form__label label-name" for="mail">
-                            <span class="content-name">Nombre*</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form form-md">
-                    <div class="form-mail">
-                        <input required class="form__input" type="text" name="surname" value="">
-                        <label class="form__label label-name" for="surname">
-                            <span class="content-name">Apellido*</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form">
-                <div class="form-mail">
-                    <input required class="form__input" type="tel" name="phone" value="">
-                    <label class="form__label label-name" for="phone">
-                        <span class="content-name">Telefono*</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form">
-                <div class="form-mail">
-                    <input required class="form__input" type="password" name="password" value="">
-                    <label class="form__label label-name" for="password">
-                        <span class="content-name">Contraseña*</span>
-                    </label>
-                </div>
-            </div>
-    </div>
-
-    <div class="step-1">
-        <div>
-            <div class="step-text">
-                <div class="step-icon"><i class="fas fa-map-marker-alt"></i></div>
-                <h3>2.Direccion</h3>
-            </div>
-        </div>
-
-        <div class="name-and-surname">
-
-
-            <div class="form form-md">
-                <div class="form-mail">
-                    <input required class="form__input" type="text" name="name" value="">
-                    <label class="form__label label-name" for="name">
-                        <span class="content-name">Nombre*</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form form-md">
-                <div class="form-mail">
-                    <input required class="form__input" type="text" name="surname" value="">
-                    <label class="form__label label-name" for="surname">
-                        <span class="content-name">Apellido*</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="form">
-            <div class="form-mail">
-                <input required class="form__input" type="text" name="street" value="">
-                <label class="form__label label-name" for="street">
-                    <span class="content-name">Calle*</span>
-                </label>
-            </div>
-        </div>
-
-        <div class="name-and-surname">
-
-
-            <div class="form form-xs">
-                <div class="form-mail">
-                    <input required class="form__input" type="tel" name="phone" value="">
-                    <label class="form__label label-name" for="phone">
-                        <span class="content-name">Numero*</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form form-xs">
-                <div class="form-mail">
-                    <input required class="form__input" type="text" name="flat" value="">
-                    <label class="form__label label-name" for="flat">
-                        <span class="content-name">Piso*</span>
-                    </label>
-                </div>
-            </div>
-
-
-            <div class="form form-xs">
-                <div class="form-mail">
-                    <input required class="form__input" type="text" name="door" value="">
-                    <label class="form__label label-name" for="door">
-                        <span class="content-name">Puerta</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="form">
-            <div class="form-mail">
-                <input required class="form__input" type="tel" name="phone" value="">
-                <label class="form__label label-name" for="phone">
-                    <span class="content-name">Telefono*</span>
-                </label>
-            </div>
-        </div>
-
-        <div class="name-and-surname">
-
-
-            <div class="form form-md">
-                <div class="form-mail">
-                    <input required class="form__input" type="text" name="city" value="">
-                    <label class="form__label label-name" for="city">
-                        <span class="content-name">Ciudad*</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form form-md">
-                <div class="form-mail">
-                    <input required class="form__input" type="number" name="cp" value="">
-                    <label class="form__label label-name" for="cp">
-                        <span class="content-name">Codigo Postal*</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="step-1">
-        <div>
-            <div class="step-text step-pay ">
-                <div class="step-icon"><i class="far fa-credit-card"></i></div>
-                <h3>3.Pago</h3>
-            </div>
-        </div>
-
-        <label class="lab-container">
-            <div class="icon-paypal"><i class="fab fa-cc-stripe"></i></div>
-            <input type="radio" checked="checked" name="radio">
-            <span class="checkmark"></span>
-        </label>
-
-        <div class="name-and-surname">
-
-
-            <div class="form form-md">
-                <div class="form-mail">
-                    <input required class="form__input" type="text" name="name" value="">
-                    <label class="form__label label-name" for="name">
-                        <span class="content-name">Titular*</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form form-xs">
-                <div class="form-mail">
-                    <input required class="form__input" type="number" name="code" value="">
-                    <label class="form__label label-name" for="code">
-                        <span class="content-name">VCC*</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="form">
-            <div class="form-mail">
-                <input required class="form__input" type="number" name="number" value="">
-                <label class="form__label label-name" for="number">
-                    <span class="content-name">Numero de Tarjeta*</span>
-                </label>
-            </div>
-        </div>
-
-
-        <div class="paypal">
-            <label class="lab-container">
-                <div class="icon-paypal"><i class="fab fa-cc-paypal"></i></div>
-                <input type="radio" name="radio">
-                <span class="checkmark"></span>
+      <div class="name-and-surname">
+        <div class="form form-xs">
+          <div class="form-mail">
+            <input #numberForm="ngModel"  [(ngModel)]="homeNumber"  required class="form__input" type="text" name="flatNumber" value="" />
+            <label class="form__label label-name" for="flatNumber">
+              <span *ngIf="!numberForm.dirty && !numberForm.valid  && !numberForm.touched"  class="content-name">Numero*</span>
+              <span *ngIf="!numberForm.valid && numberForm.touched" class="content-name red">Numero*</span>
             </label>
+          </div>
         </div>
 
-    </div>
-    
+        <div class="form form-xs">
+          <div class="form-mail">
+            <input #flatForm="ngModel"  [(ngModel)]="flat"  required class="form__input" type="text" name="flat" value="" />
+            <label class="form__label label-name" for="flat">
+                 <span *ngIf="!flatForm.dirty && !flatForm.valid && !flatForm.touched"  class="content-name">Piso*</span>
+              <span *ngIf="!flatForm.valid && flatForm.touched" class="content-name red">Piso*</span>
+            </label>
+          </div>
+        </div>
 
-    <div class="btn-end">
-        <a href="" class="modal__text" role="button">Realizar Pago</a>
-    </div>
-</form>
+        <div class="form form-xs">
+          <div class="form-mail">
+              <input #doorForm="ngModel"  [(ngModel)]="door" required class="form__input" type="text" name="door" value="">
+              <label class="form__label label-name" for="door">
+                  <span class="content-name">Puerta</span>
+              </label>
+          </div>
+      </div>
+  </div>
 
-</main>
-<app-footer></app-footer>
+      <div class="form">
+        <div class="form-mail">
+          <input  #phoneForm="ngModel"  [(ngModel)]="phone" required class="form__input" type="tel" name="phone" value="" />
+          <label class="form__label label-name" for="phone">
+            <span *ngIf="!phoneForm.dirty && !phoneForm.valid  && !phoneForm.touched"  class="content-name">Telefono*</span>
+            <span *ngIf="!phoneForm.valid && phoneForm.touched" class="content-name red">Telefono no valido*</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="name-and-surname">
+        <div class="form form-md">
+          <div class="form-mail">
+            <input #cityForm="ngModel"  [(ngModel)]="city"  required class="form__input" type="text" name="city" value="" />
+            <label class="form__label label-name" for="city">
+              <span *ngIf="!cityForm.dirty && !cityForm.valid  && !cityForm.touched"  class="content-name">Ciudad*</span>
+              <span *ngIf="!cityForm.valid && cityForm.touched" class="content-name red">Ciudad no valida*</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form form-md">
+          <div class="form-mail">
+            <input #zipCodeForm="ngModel"  [(ngModel)]="zipCode"  required class="form__input" type="text" name="cp" value="" />
+            <label class="form__label label-name" for="cp">
+              <span *ngIf="!zipCodeForm.dirty && !zipCodeForm.valid  && !zipCodeForm.touched"  class="content-name">Codigo Postal*</span>
+              <span *ngIf="!zipCodeForm.valid && zipCodeForm.touched" class="content-name red">CP no valida*</span>
+            </label>
+          </div>
+        </div> 
+      </div>
+      <div class="btn-end btn-register">
+        <button [disabled]="!formPayment.valid" type="submit" class="modal__text" >Guardar</button>
+      </div>
+    </div>
+
+    <div class="step-1">
+      <div>
+        <div class="step-text step-pay ">
+          <div class="step-icon"><i class="far fa-credit-card"></i></div>
+          <h3>2.Pago</h3>
+
+        </div>
+        
+      </div>
+
+      <label class="lab-container">
+        <div class="icon-paypal"><i class="fab fa-cc-stripe"></i></div>
+        <input type="radio" checked="checked" name="radio" />
+        <span class="checkmark"></span>
+      </label>
+
+      <div class="form">
+        <div class="form-mail">
+          <input #cardNumberForm="ngModel"  [(ngModel)]="cardNumber"  required class="form__input" type="number" name="number" value="" />
+          <label class="form__label label-name" for="number">
+            <span *ngIf="!cardNumberForm.dirty && !cardNumberForm.valid  && !cardNumberForm.touched"  class="content-name">Numero de Tarjeta*</span>
+            <span *ngIf="!cardNumberForm.valid && cardNumberForm.touched" class="content-name red">Numero de Tarjeta no valido*</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="name-and-surname">
+        <div class="form form-md">
+          <div class="form-mail">
+            <input #nameNumberForm="ngModel"  [(ngModel)]="cardName"  required class="form__input" type="text" name="name" value="" />
+            <label class="form__label label-name" for="name">
+              <span *ngIf="!nameNumberForm.dirty && !nameNumberForm.valid  && !nameNumberForm.touched"  class="content-name">Titular*</span>
+              <span *ngIf="!nameNumberForm.valid && nameNumberForm.touched" class="content-name red">Titular no valido*</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form form-xs">
+          <div class="form-mail">
+            <input #cardCodeForm="ngModel"  [(ngModel)]="cardCode"  required class="form__input" type="number" name="code" value="" />
+            <label class="form__label label-name" for="code">
+              <span *ngIf="!cardCodeForm.dirty && !cardCodeForm.valid  && !cardCodeForm.touched"  class="content-name">VCC*</span>
+              <span *ngIf="!cardCodeForm.valid && cardCodeForm.touched" class="content-name red">VCC*</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="paypal">
+        <label class="lab-container">
+          <div class="icon-paypal"><i class="fab fa-cc-paypal"></i></div>
+          <input type="radio" name="radio" />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <h3 class="total-text" >Total:<span class="total-numbers" >{{totalAmmount | currency: " " }}€ </span> </h3>
+      
+      <div class="btn-end">
+        <button [disabled]="!formPayment.valid" type="submit" class="modal__text" >Realizar pago</button>
+      </div>
+    </div>
+
+    </div>
+
+    <div>
+
+    </div>
+
+
+    </form>
+
+  </main>
+  <app-footer></app-footer>
 </div>

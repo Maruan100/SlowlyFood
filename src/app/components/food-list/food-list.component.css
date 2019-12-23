@@ -10,8 +10,22 @@
   margin-top: -1px;
 }
 
+.btn-succes{
+transform:scale(1.1);
+transition: all 300ms;
+font-weight: 800;
+}
+
+
 a {
   color: black;
+ 
+}
+
+.active{
+  color: #3FC1C9 !important;
+  font-weight: bolder !important;
+  transform:scale(1.1);
 }
 
 .filter {
@@ -23,13 +37,14 @@ a {
   position: relative;
   left: -13px;
   cursor: pointer;
+  color: #535353;
 }
 
 .primary {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 15px 0px 0px;
+  margin: 30px 15px 30px 0px;
 }
 
 .our-cart {
@@ -46,7 +61,8 @@ a {
 }
 
 .foods__plato__info {
-  max-width: 190px;
+  max-width: 390px;
+  color: #525252;
 }
 
 .foods {
@@ -101,11 +117,16 @@ a {
 .btn--category {
   padding: 12px 12px;
   background-color: #fff;
-  color: #333;
-  letter-spacing: 0px;
+  color: #929292;
+  letter-spacing: 1px;
   margin: 0;
+  font-size: 14px;
   flex: none;
-  margin-left: 3px;
+  margin-left: 7px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+  margin-left: 15px;
 }
 
 .category {
@@ -113,8 +134,9 @@ a {
   justify-content: space-between;
   align-self: center;
   width: 100%;
-  padding-left: 12px;
   overflow-x: scroll;
+  overflow-y: hidden;
+  margin-left: 9px;
 }
 
 .foods__plato__price {
@@ -137,10 +159,14 @@ a {
   .category {
     justify-content: flex-start;
     overflow: inherit;
-    margin-left: 39px;
+    margin-left: 40px;
   }
 
   .our-cart {
     margin-left: 60px;
+  }
+
+  .btn--category{
+    margin-left: 25px;
   }
 }

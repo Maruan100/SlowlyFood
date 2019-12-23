@@ -3,12 +3,13 @@
     
     <div class="primary">
       <div class="category">
-        <a class="btn btn--category"  style="color: #3FC1C9;" href="#">Todos los platos</a>
-    <a class="btn btn--category" href="#">Primeros Platos</a>
-    <a class="btn btn--category" href="#">Segundos Platos</a>
-    <a class="btn btn--category" href="#">Postres</a>
+        <a class="btn btn--category active" id="btnAll" (click)="btnAllPlato()"  >Todos los platos</a>
+    <a class="btn btn--category" id="btnFirst" (click)="btnPrimerPlato()" >Primeros Platos</a>
+    <a class="btn btn--category" id="btnSecond"  (click)="btnSegundoPlato()" >Segundos Platos</a>
+    <a class="btn btn--category" id="btnDessert" (click)="btnDessertPlato()">Postres</a>
       </div>
     </div>
+
     
     <main>
         <div class="foods">
@@ -17,18 +18,66 @@
         <span>Filtrar</span>
           </div>
           
-        <div class="foods__container">
+        <div>
+
+          <div  class="foods__container" *ngIf="showAllPlato" >
 
             <div *ngFor="let plato of platos" class="foods__plato">
+              <a [routerLink]="['/carta/plato',plato._id]" >
+              <h4 class="foods__plato__txt">{{plato.name}}</h4>
+              <p class="foods__plato__info" >{{plato.title}}</p>
+              <img src="{{plato.image}}" alt="">
+              <h4 class="foods__plato__price" >{{plato.price | currency: " "  }}€</h4>
+              </a>
+            <a><span (click)="addToCart(plato._id)"   class="foods__plato__add" ><i class="fas fa-cart-plus"> </i>Añadir al carrito</span> </a> 
+            
+            </div>
+
+            </div>
+
+
+
+
+            
+          <div class="foods__container" *ngIf="showPrimerPlato" >
+            <div *ngFor="let plato of getPrimerPlato" class="foods__plato">
+              <a [routerLink]="['/carta/plato',plato._id]" >
+            <h4 class="foods__plato__txt">{{plato.name}}</h4>
+            <p class="foods__plato__info" >{{plato.title}}</p>
+            <img src="{{plato.image}}" alt="">
+            <h4 class="foods__plato__price" >{{plato.price | currency: " "  }}€</h4>
+            </a>
+          <a ><span (click)="addToCart(plato._id)" class="foods__plato__add" > <i class="fas fa-cart-plus"> </i>Añadir al carrito</span> </a> 
+          </div>
+            </div>
+
+
+            <div class="foods__container" *ngIf="showSegundoPlato" >
+              <div *ngFor="let plato of getSegundoPlato" class="foods__plato">
                 <a [routerLink]="['/carta/plato',plato._id]" >
               <h4 class="foods__plato__txt">{{plato.name}}</h4>
               <p class="foods__plato__info" >{{plato.title}}</p>
               <img src="{{plato.image}}" alt="">
               <h4 class="foods__plato__price" >{{plato.price | currency: " "  }}€</h4>
               </a>
-            <a [routerLink]="['/pago']"> <span class="foods__plato__add" > <i class="fas fa-cart-plus"> </i>Añadir al carrito</span> </a> 
-            
+            <a ><span (click)="addToCart(plato._id)" class="foods__plato__add" > <i class="fas fa-cart-plus"> </i>Añadir al carrito</span> </a> 
             </div>
+              </div>
+
+
+              
+
+            <div class="foods__container" *ngIf="showDessertPlato" >
+              <div *ngFor="let plato of getDessertPlato" class="foods__plato">
+                <a [routerLink]="['/carta/plato',plato._id]" >
+              <h4 class="foods__plato__txt">{{plato.name}}</h4>
+              <p class="foods__plato__info" >{{plato.title}}</p>
+              <img src="{{plato.image}}" alt="">
+              <h4 class="foods__plato__price" >{{plato.price | currency: " "  }}€</h4>
+              </a>
+            <a  ><span (click)="addToCart(plato._id)" class="foods__plato__add" > <i class="fas fa-cart-plus"> </i>Añadir al carrito</span> </a> 
+            </div>
+              </div>
 
         </div>
         </div>

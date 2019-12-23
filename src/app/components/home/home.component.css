@@ -17,23 +17,29 @@
     height: 100%;
   }
   .media-icon{
-    font-size: 26px;
+    font-size: 28px;
   }
   .icon-truck{
-    font-size: 32px;
+    font-size: 28px;
   }
   .links{
-      color: #4834d4;
+    color: #3FC1C9;
+  }
+  .red{
+    color:#FC5185;
   }
 
-
+   .error{
+    color:#FC5185 !important;
+    margin-top: 7px !important;
+   }
  
   .title__text{
-    font-size: 30px;
-      text-align: center;
-        color: #fff;
-        margin: 33px;
-        line-height: 1.37;
+    font-size: 27px;
+    text-align: center;
+    color: #dfe4ea;
+    margin:33px 32px 55px;
+    line-height: 1.3;
   }
   
   /* ------------MENU---------- */
@@ -195,7 +201,7 @@
     text-align: center;
     display: flex;
     justify-content: center;
-    margin-bottom: 32px;
+    margin-bottom: 58px;
   }
   
   
@@ -242,12 +248,27 @@
     color: #00acee;
   }
   .social:hover{
-  color: #000;
+  color: #333;
   }
+  
   .modal:target {
     visibility: visible;
     opacity: 1;
   }
+  .modal__text{
+    font-size: 16px;
+    padding: 15px;
+  }
+  .second{
+    background-color: transparent;
+    color: #fff;
+    border-color: #fff;
+  }
+  .second:hover{
+    background-color: #fff;
+    color: #333;
+  }
+
   .modal2{
     font-size: 14px;
     position: fixed;
@@ -262,7 +283,8 @@
     transition: opacity 0.4s;
   }
   .modal__text2{
-    padding: 12px;
+    margin-top: 14px;
+    margin-bottom: 12px;
   }
   .modal2:target {
     visibility: visible;
@@ -281,7 +303,8 @@
     font-weight: bold;
     margin: 0;
     padding: 12px;
-    color: #2f3640;
+    color: #57606f;
+    font-size: 27px;
   }
   
   h2 {
@@ -300,7 +323,7 @@
   
   .forgot-password {
     font-size: 12px;
-    color: #4834d4;
+    color: #87868c;
     margin-top: 12px;
   }
   
@@ -329,22 +352,12 @@
     background-color: #fff;
     max-width: 360px;
     width: auto;
-    margin: 100px auto 0;
+    margin: 50px auto 0;
     padding: 12px;
     border-radius: 6px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
   }
-  
-  .modal__close {
-    position: absolute;
-    top: -3px;
-    right: 10px;
-    text-decoration: none;
-    color: #333;
-    font-size: 58px;
-  }
-  
-  
+    
   
   .tab {
     display: none;
@@ -364,24 +377,31 @@
     margin-top: 10px;
   }
   */
-  @media screen and (min-width: 1024px) {
 
-    .btn:hover {
-      background-color: #fff;
-      border-color: #3FC1C9;
-      color: #3FC1C9;
-    }
+  .btn[disabled]{
+    background-color: #fff;
+    border-color: #ccc;
+    color: #a4b0be;
+  }
+  @media screen and (min-width: 1024px) {
   
     nav {
       padding: 0;
       margin: 0;
     }
 
+    .modal__body{
+      margin: 70px auto 0;
+    }
+
+  
+
   
     .title__text{
       font-size: 42px;
+      text-align: center;
           color: #fff;
-          margin: 33px;
+        margin: 33px 60px 55px;
           line-height: 1.37;
     }
   

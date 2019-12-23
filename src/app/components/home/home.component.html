@@ -6,91 +6,117 @@
         <a [routerLink]="['/carta']" [routerLinkActive]="['active']" class="modal__text" role="button">A comer!</a>
       </div>
     <!-- MODAL COMPLETA -->
-    <div class="mainmodal">
-      <a href="#modal" class="modal__text" role="button">Acceder a cuenta</a>
-      <div id="modal" class="modal">
-        <div class="modal__body">
-          <a href="#" class="modal__close">&times; </a>
-          <!-- CONTENIDO DE MODAL -->
-          <div class="container">
-            <div class=" formule form-container__sing-in">
-              <div class="formule">
-                <h1>Iniciar sesion</h1>
-                <div class="form-container__social">
-                  <a href="#" class="social social social--g"><span class="icon-google"></span></a>
-                  <a href="#" class="social social--f"><span class="icon-facebook-square"></span></a>
-                  <a href="#" class="social social--t"><span class="icon-twitter"></span></a>
-                </div>
-                <div class="form">
-                  <div class="form-name">
-                    <input required class="form__input" type="email" name="name" value="">
-                    <label class="form__label label-name" for="name">
-                      <span class="content-name">Email</span>
-                    </label>
-                  </div>
-  
-                </div>
-                <div class="form">
-                  <div class="form-name">
-                    <input required class="form__input" type="password" name="password" value="">
-                    <label class="form__label label-name" for="password">
-                      <span class="content-name">Contraseña</span>
-                    </label>
-                  </div>
-  
-                </div>
-              </div>
-              <a class="forgot-password" href="#">¿Has olvidado tu contraseña?</a>
-              <button type="button" class="btn">Iniciar Sesion</button>
-              <a href="#modal2" class="modal__text2 links " role="button">O registrarte</a>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div id="modal2" class="modal2">
-        <div class="form-container">
-          <div class="modal__body">
-            <a href="#" class="modal__close">&times;</a>
+<div class="mainmodal">
+    <a href="#modal" class="modal__text second" role="button">Acceder a cuenta</a>
+    <div id="modal" class="modal">
+      <div class="modal__body">
+        <a href="#" class="modal__close">&times; </a>
+        <!-- CONTENIDO DE MODAL -->
+        <div class="container">
+          <form #formLogin="ngForm"  (ngSubmit)="onLoginMail()" >
+          <div class=" formule form-container__sing-in">
             <div class="formule">
-              <h1>Registrarse</h1>
-              <div class="form-container__social">
-                  <a href="#" class="social social social--g"><span class="icon-google"></span></a>
-                  <a href="#" class="social social--f"><span class="icon-facebook-square"></span></a>
-                  <a href="#" class="social social--t"><span class="icon-twitter"></span></a>
-              </div>
-  
-              <div class="form">
-                <div class="form-name">
-                  <input required class="form__input" type="name" name="name" value="">
-                  <label class="form__label label-name" for="name">
-                    <span class="content-name">Nombre</span>
-                  </label>
-                </div>
-              </div>
-  
-              <div class="form">
-                <div class="form-name">
-                  <input required class="form__input" type="email" name="name" value="">
-                  <label class="form__label label-name" for="name">
-                    <span class="content-name">Email</span>
-                  </label>
-                </div>
-  
-              </div>
-              <div class="form">
-                <div class="form-name">
-                  <input required class="form__input" type="password" name="name" value="">
-                  <label class="form__label label-name" for="name">
-                    <span class="content-name">Contraseña</span>
-                  </label>
-                </div>
-  
-              </div>
-              <button type="button" class="btn">Registrarse</button>
+              <h1>Iniciar sesion</h1>
+              
+            <div class="form-container__social">
+              <a  (click)="onLoginGoogle()" role="button" class="social social social--g"><span class="icon-google"></span></a>
+              <a (click)="onLoginFacebook()"  class="social social--f"><span class="icon-facebook-square"></span></a>
+              <a href="#" class="social social--t"><span class="icon-twitter"></span></a>
             </div>
+
+              <div class="form">
+                <div class="form-name">
+                  <input #loginMail="ngModel" [(ngModel)]="email" required class="form__input" type="email" name="email">
+                  <label class="form__label label-name" for="email">
+                    <span *ngIf="!loginMail.dirty && !loginMail.valid"  class="content-name">Email</span>
+                    <span *ngIf="!loginMail.valid && loginMail.touched" class="content-name red">Email no valido*</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form">
+                <div class="form-name">
+                  <input #loginPass="ngModel"  [(ngModel)]="pass" required class="form__input" type="password" name="password" value="">
+                  <label class="form__label label-name" for="password">
+                    <span *ngIf="!loginPass.dirty || !loginPass.valid" class="content-name">Contraseña</span>
+                    <span *ngIf="!loginPass.valid && loginPass.touched" class="content-name red">Contraseña no valida*</span>
+                  </label>
+                </div>
+              </div>
+              
+              <div class="error" *ngIf="errors" >
+                {{errors}} !
+              </div>
+              
+            </div>
+            <a class="forgot-password" href="#">¿Has olvidado tu contraseña?</a>
+            <button [disabled]="!formLogin.valid"  type="submit" class="btn">Iniciar Sesion</button>
+            <a href="#modal2" class="modal__text2 links " role="button">O registrarte</a>
           </div>
+        </form>
         </div>
       </div>
     </div>
+
+
+
+
+
+
+
+    <div id="modal2" class="modal2">
+      <div class="form-container">
+        <form  #formSignIn="ngForm"  (ngSubmit)="OnregisterUser(formSignIn)" >
+        <div class="modal__body">
+          <a href="#" class="modal__close">&times;</a>
+          <div class="formule">
+            <h1>Registrarse</h1>
+
+            <div class="form-container__social">
+              <a  (click)="onLoginGoogle()" role="button" class="social social social--g"><span class="icon-google"></span></a>
+              <a (click)="onLoginFacebook()"  class="social social--f"><span class="icon-facebook-square"></span></a>
+              <a href="#" class="social social--t"><span class="icon-twitter"></span></a>
+            </div>
+            
+            <div class="form">
+              <div class="form-name">
+                <input pattern="[a-zA-Z]+" ngModel #registName="ngModel" [(ngModel)]="name"  required class="form__input" type="name" name="name" value="">
+                <label class="form__label label-name" for="name">
+                  <span  *ngIf="!registName.dirty || !registName.valid" class="content-name">Nombre</span>
+                  <span *ngIf="!registName.valid && registName.touched" class="content-name red">Nombre no valido*</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form">
+              <div class="form-name">
+                <input ngModel #registEmail="ngModel"  [(ngModel)]="Registeremail" required class="form__input" type="email" name="email" value="">
+                <label class="form__label label-name" for="email">
+                  <span *ngIf="!registEmail.dirty || !registEmail.valid" class="content-name">Email</span>
+                  <span *ngIf="!registEmail.valid && registEmail.touched" class="content-name red">Email no valido*</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form">
+              <div class="form-name">
+                <input ngModel #registPassword="ngModel" [(ngModel)]="registerPass"  required class="form__input" type="password" name="password" value="">
+                <label class="form__label label-name" for="password">
+                  <span *ngIf="!registPassword.dirty || !registPassword.valid" class="content-name">Contraseña</span>
+                  <span *ngIf="!registPassword.valid && registPassword.touched" class="content-name red">Contraseña no valido*</span>
+                </label>
+              </div> 
+            </div>
+
+            <div class="error"  >
+              {{errorsRegistre}}
+            </div>
+
+            <button [disabled]="!formSignIn.valid"  type="submit" class="btn">Registrarse</button>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
   </div>

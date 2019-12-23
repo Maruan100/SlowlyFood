@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "authentification-4a288": {
+      "hosting": {
+        "SlowlyFood": [
+          "authentification-4a288"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "authentification-4a288"
+  }
+}

@@ -22,6 +22,7 @@ a{
     margin: 0px;
     padding: 0px;
     text-align: center;
+    padding-top: 16px;
 }
 
 .footer-main_social-list li {
@@ -53,7 +54,7 @@ a{
 
 .footer-menu-list{
     margin: 0px;
-    padding: 0px;
+    padding: 18px;
     text-align: center;
 }
 .footer-menu-list li {
@@ -74,6 +75,8 @@ a{
     margin: auto;
     background-color:#3FC1C9;
     padding: 0px;
+    padding-bottom: 8px;
+    padding-top: 20px;
   
 }
 .footer-bottom p {
@@ -119,6 +122,7 @@ a{
     .footer-menu-list{
         display: flex;
     flex-direction: column;
+    padding: 26px;
     }
     .footer-menu-list li{
         padding: 4px;

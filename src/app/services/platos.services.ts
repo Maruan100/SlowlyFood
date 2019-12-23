@@ -10,21 +10,16 @@ export class PlatoServices{
 
     constructor(
         private _http: HttpClient,
-    ){
+    ){}
 
-    }
-
-    pruebas(){
-        return "Holaa desde service"
-    }
 
     getPlatos():Observable<any>{
-        this.url = 'http://localhost:3900/api/';
+        this.url = 'https://slowlyfood-api.herokuapp.com/api/';
         return this._http.get(this.url + 'articles');
     }
 
      getPlato(platoId):Observable<any>{
-       this.url = 'http://localhost:3900/api/';
+       this.url = 'https://slowlyfood-api.herokuapp.com/api/';
        return this._http.get(this.url + 'article/' + platoId);
      }
 }

@@ -13,6 +13,10 @@ const appRoutes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
     path: 'carta',
     component: FoodListComponent
   },

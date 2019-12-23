@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
+import {FormsModule} from '@angular/forms';
+
+// Componentes
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { FoodListComponent } from './components/food-list/food-list.component';
@@ -9,8 +11,18 @@ import { CartShoppingComponent } from './components/cart-shopping/cart-shopping.
 import { HeaderComponent } from './components/header/header.component';
 import { FoodCardInfoComponent } from './components/food-card-info/food-card-info.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
 import { PaymentComponent } from './components/payment/payment.component';
+
+// Http
+import { HttpClientModule } from '@angular/common/http';
+
+// Firebase
+import {AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { SharedService } from './services/shared.service';
+
 
 @NgModule({
   declarations: [
@@ -26,10 +38,13 @@ import { PaymentComponent } from './components/payment/payment.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    FormsModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
-  providers: [],
+  
+  providers: [AngularFireAuth, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

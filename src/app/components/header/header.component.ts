@@ -1,15 +1,96 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { AuthService } from 'src/app/services/users.services';
+import { Router } from '@angular/router';
+import { SharedService } from 'src/app/services/shared.service';
+import { CartService } from 'src/app/services/cart.services';
+import { Platos } from 'src/app/models/platos';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  providers: []
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, DoCheck {
 
-  constructor() { }
+  public platosAdd: Array<Platos>;
+  public isLogged: boolean = false;
+  public users: any;
+
+  public cartProductCount: number = 0;
+
+  public cartItems;
+  public totalAmmount;
+
+
+  Users: firebase.User;
+
+  constructor(
+    private _authService: AuthService,
+    private router: Router,
+    private _cartService: CartService
+  ) {}
 
   ngOnInit() {
+    this.getCurrentUser();
+    this._authService.isAuth().subscribe(user => {
+      if (user) {
+        this.users = user;
+        console.log(user);
+      }
+  });
+
+  this.platosAdd = this._cartService.getPlatos();
+}
+
+
+  ngDoCheck() {
+    
+    this.totalAmmount = this._cartService.getTotalPrice();
+
+    
+    this.cartProductCount = this._cartService.platos.length;
   }
 
+  delateItem(plato){
+    this._cartService.delateTask(plato);
+  }
+
+  
+
+
+  openCart() {
+    let element = document.getElementById('cart-menu');
+    element.classList.remove('cart');
+    element.classList.add('open-cart');
+  }
+
+  closeCart() {
+    let element = document.getElementById('cart-menu');
+    element.classList.remove('open-cart');
+    element.classList.add('cart');
+  }
+
+  closeMenuForPhone() {
+    //document.getElementById("nav").checked = false;
+  }
+
+  LogOut() {
+    this._authService.logOutUser();
+    if ((this.isLogged = false)) {
+      this.router.navigate(['home']);
+    }
+  }
+
+  getCurrentUser() {
+    this._authService.isAuth().subscribe(auth => {
+      if (auth) {
+        console.log('user loggado');
+        this.isLogged = true;
+      } else {
+        console.log('No logado');
+        this.isLogged = false;
+      }
+    });
+  }
 }
