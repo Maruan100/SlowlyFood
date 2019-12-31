@@ -107,10 +107,10 @@
                 </label>
               </div> 
             </div>
-
-            <div class="error"  >
-              {{errorsRegistre}}
-            </div>
+      
+           <div class="error" *ngIf="errorsRegister" >
+             {{errorsRegister}}!
+           </div>
 
             <button [disabled]="!formSignIn.valid"  type="submit" class="btn">Registrarse</button>
           </div>

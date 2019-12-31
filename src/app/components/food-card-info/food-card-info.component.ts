@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PlatoServices } from 'src/app/services/platos.services';
 import { Platos } from 'src/app/models/platos';
-import { SharedService } from 'src/app/services/shared.service';
 import { CartService } from 'src/app/services/cart.services';
 
 @Component({

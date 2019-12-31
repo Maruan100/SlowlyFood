@@ -21,7 +21,8 @@ import {AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
-import { SharedService } from './services/shared.service';
+import { EndPageComponent } from './components/end-page/end-page.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 
 @NgModule({
@@ -33,7 +34,9 @@ import { SharedService } from './services/shared.service';
     HeaderComponent,
     FoodCardInfoComponent,
     FooterComponent,
-    PaymentComponent
+    PaymentComponent,
+    EndPageComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ import { SharedService } from './services/shared.service';
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   
-  providers: [AngularFireAuth, SharedService],
+  providers: [AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -40,6 +40,13 @@ export class CartService {
             localStorage.setItem('Platos', JSON.stringify(platos));
         }
 
+        let cart = document.getElementById('cart-number');
+        cart.classList.add('cart-animation');
+
+        setTimeout(() => {
+            cart.classList.remove('cart-animation');
+        }, 500);
+
     }
 
     delateTask(plato) {
@@ -51,6 +58,7 @@ export class CartService {
         }
     }
 
+    
     getTotalPrice() {
         let total = 0;
     

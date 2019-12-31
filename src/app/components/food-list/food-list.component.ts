@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Renderer2, IterableDiffers } from '@angular/core';
 import { Platos } from 'src/app/models/platos';
 import { PlatoServices } from 'src/app/services/platos.services';
-import { SharedService } from 'src/app/services/shared.service';
 import { CartService } from 'src/app/services/cart.services';
 
 @Component({

@@ -20,10 +20,11 @@
     font-size: 28px;
   }
   .icon-truck{
-    font-size: 28px;
+    font-size: 30px;
   }
   .links{
     color: #3FC1C9;
+    font-size: 17px;
   }
   .red{
     color:#FC5185;
@@ -47,7 +48,7 @@
   .nav-menu__main{
     max-width: 100%;
     max-height: 100%;
-    padding: 0px 18px 0 18px;
+    padding: 1px 20px 1px 20px;
     background-color: #3FC1C9;
     display: flex;
     align-items: center;
@@ -166,19 +167,7 @@
     background: #fff;
     transition: transform 0.2s ease;
   }
-  
-  #nav:checked+.nav-btn i:nth-child(1) {
-    transform: translateY(8px) rotate(135deg);
-  }
-  
-  #nav:checked+.nav-btn i:nth-child(2) {
-    opacity: 0;
-  }
-  
-  #nav:checked+.nav-btn i:nth-child(3) {
-    transform: translateY(-6px) rotate(45deg);
-  }
-  
+    
   #nav:checked~.nav-menu__display {
     z-index: 9990;
     opacity: 1;
@@ -225,8 +214,7 @@
     left: 4%;
   
   }
-  .form-container__social{
-  }
+
   
   .social{
     margin-left: 12px;
@@ -418,9 +406,6 @@
       height: 0px;
        z-index: 200;
        position: relative;
-    }
-    .nav-menu__main {
-          padding: 0px 18px 20px 18px;
     }
     .nav-menu__logo{
       position: relative;

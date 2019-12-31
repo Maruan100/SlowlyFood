@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { map } from 'rxjs/operators';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { Order } from '../models/address';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +14,17 @@ import { Router } from '@angular/router';
 export class AuthService {
   newUser: any;
   public errorsRegistre: string;
+  public addressCollection: AngularFirestoreCollection<Order>;
+  public orders: Array<Order>;
 
   constructor(
     private afAuth: AngularFireAuth,
     private db: AngularFirestore,
-    private router: Router
-  ) {}
+    private router: Router,
+  ) {
+   this.addressCollection = this.db.collection(`Orders`);
+  }
+
 
   createUser(user) {
     this.afAuth.auth
@@ -30,27 +37,44 @@ export class AuthService {
         });
 
         this.insertUserData(useCredential).then(() => {
-         
+     
+            this.router.navigate(['carta'])
+    
         });
       })
-      .catch((err) =>{
+      .catch((err) => {
         console.log(err.message);
         this.errorsRegistre = err.message;
       });
   }
 
+
+
   insertUserData(useCredential: firebase.auth.UserCredential) {
     return this.db.doc(`Users/${useCredential.user.uid}`).set({
       email: this.newUser.email,
-      name: this.newUser.name
+      name: this.newUser.name,
+      // Direction:
+
     });
   }
 
-  registerUser(email: string, pass: string){
-    return new Promise ((resolve , reject) =>{
-      this.afAuth.auth.createUserWithEmailAndPassword(email,pass)
-      .then( (userData) => resolve (userData)),
-      err => reject(err)});
+
+  addOrde(order: Order){
+    this.addressCollection.add(order);
+    this.router.navigate(['end-page']);
+  }
+
+  getOrder() {
+    return this.orders;
+  }
+
+  registerUser(email: string, pass: string) {
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth.createUserWithEmailAndPassword(email, pass)
+        .then((userData) => resolve(userData)),
+        err => reject(err)
+    });
   }
 
   loginEmailUser(email: string, pass: string) {
@@ -75,6 +99,6 @@ export class AuthService {
   }
 
   isAuth() {
-    return this.afAuth.authState.pipe(map( auth => auth));
+    return this.afAuth.authState.pipe(map(auth => auth));
   }
 }

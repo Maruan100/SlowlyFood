@@ -1,0 +1,45 @@
+<div class="container">
+    <main class="order">
+        <div class="container-separation"  >   
+        <div class="order-container">
+            <div class="order-info">
+                <h5>Todos los pedidos</h5>
+                
+
+            <div *ngFor="let order of getOrderByUser" class="order-cont">  
+                <div class="orders-container">
+                    <h6 class="orders-id">Pedido:</h6>
+                    <span>#54353453</span>
+                    <h6 class="orders-quantity">Articulos: {{order.quantity}}</h6>
+
+                    <div *ngFor="let pedido of order.products" class="orders_container-info">
+                        <img class="img-product"
+                            src="{{pedido.image}}" alt="" />
+                        <div class="orders-info">
+                            <p>{{pedido.name}}</p>
+                            <p>{{pedido.price}}€</p>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="addres-container" >
+                        <p (click)="openDropDown()" class="addres-btn" >Direccion <i class="fas fa-caret-down"></i></p>
+                        <div id="btn-dropdown" class="drowdown">
+                            <div class="dropdown_container">
+                                <p>Calle: {{order.street}}</p>
+                                <p>Casa: {{order.flat}}</p>
+                                <p>Ciudad: {{order.city}}</p>
+                                <p>CP: {{order.zip}}</p>
+                            </div>
+                        </div>
+                        <span class="total">Total:{{order.totalPrice}}€</span>
+                    </div>
+
+
+                  
+            </div>
+            </div>
+        </div>
+        </div>
+    </main>
+</div>

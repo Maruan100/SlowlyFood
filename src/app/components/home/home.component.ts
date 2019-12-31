@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../../services/users.services';
 import { Router } from '@angular/router';
@@ -9,13 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent implements OnInit {
-  public userInfo: string ;
+export class HomeComponent implements OnInit , DoCheck{
   public email: string = '';
   public pass: string = '';
   public errors: string;
-  public userData: string;
-  public registError = this._authService.errorsRegistre;
+  public errorsRegister: string;
+
 
 
 
@@ -26,12 +25,15 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.userData);
   }
+
+  ngDoCheck() {
+    this.errorsRegister = this._authService.errorsRegistre;
+  }
+
 
   OnregisterUser(frm) {
     this._authService.createUser(frm.value);
-    console.log(this.registError);
   }
 
   onLoginMail(): void {

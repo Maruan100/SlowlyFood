@@ -1,7 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { AuthService } from 'src/app/services/users.services';
 import { Router } from '@angular/router';
-import { SharedService } from 'src/app/services/shared.service';
 import { CartService } from 'src/app/services/cart.services';
 import { Platos } from 'src/app/models/platos';
 
@@ -48,15 +47,12 @@ export class HeaderComponent implements OnInit, DoCheck {
     
     this.totalAmmount = this._cartService.getTotalPrice();
 
-    
     this.cartProductCount = this._cartService.platos.length;
   }
 
   delateItem(plato){
     this._cartService.delateTask(plato);
   }
-
-  
 
 
   openCart() {
@@ -77,9 +73,8 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   LogOut() {
     this._authService.logOutUser();
-    if ((this.isLogged = false)) {
-      this.router.navigate(['home']);
-    }
+    
+      this.router.navigate(['/home']);
   }
 
   getCurrentUser() {

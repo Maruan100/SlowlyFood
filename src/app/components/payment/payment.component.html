@@ -1,9 +1,9 @@
-<div class="body">
+  <div class="body">
   <main class="container">
     <div *ngIf="!isLogged" class="step-1">
       <div class="step-text">
         <div class="step-icon"><i class="fas fa-user"></i></div>
-        <h3>Añadir Cuenta</h3>
+        <h3>1.Añadir Cuenta</h3>
       </div>
       <div class="form-container__social">
         <a  (click)="onLoginGoogle()" role="button" class="social social--g"><span class="icon-google"></span></a>
@@ -17,6 +17,7 @@
         <h4 id="text-user" (click)="addUserMenu()" >Iniciar Sesion</h4>
       </div>
 
+      <div>
       <form #formSignIn="ngForm"  id="register-form"  (ngSubmit)="OnregisterUser(formSignIn)" action="">
         <div class="container-form">
         <div class="form">
@@ -49,14 +50,19 @@
             </div> 
           </div>
 
+          
+          <div class="error" *ngIf="errorsRegister" >
+            {{errorsRegister}}!
+          </div>
+
        <div class="btn-container"  >
         <button [disabled]="!formSignIn.valid"  type="submit" class="modal__text">Registrarse</button>
-       </div   >
+       </div  >
         </div>
       </form>
 
 
-      <form #formLogin="ngForm" id="user-form" (ngSubmit)="onLoginMail()" class="hide" action="">
+      <form #formLogin="ngForm" id="user-form" (ngSubmit)="onLoginMail()" class="hide">
         <div class="container-form">
         <div class="form">
             <div class="form-name">
@@ -90,20 +96,21 @@
       </form>
     </div>
 
+    </div>
 
-    <form #formPayment="ngForm" (ngSubmit)="onLoginMail()" action="">
+    <form *ngIf="isLogged"  #formPayment="ngForm" (ngSubmit)="createOrder()">
       <div class="container-form2" >
     <div class="step-1">
       <div>
         <div class="step-text">
           <div class="step-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <h3>1.Direccion</h3>
+          <h3>2.Añadir Direccion</h3>
         </div>
       </div>
 
       <div class="form">
         <div class="form-mail">
-          <input #streetForm="ngModel"  [(ngModel)]="street"  required class="form__input" type="text" name="street" value="" />
+          <input #streetForm="ngModel"  [(ngModel)]="order.street"  required class="form__input" type="text" name="street" value="" />
           <label class="form__label label-name" for="street">
             <span *ngIf="!streetForm.dirty && !streetForm.valid  && !streetForm.touched"  class="content-name">Calle*</span>
             <span *ngIf="!streetForm.valid && streetForm.touched" class="content-name red">Calle no valida*</span>
@@ -112,39 +119,23 @@
       </div>
 
       <div class="name-and-surname">
-        <div class="form form-xs">
-          <div class="form-mail">
-            <input #numberForm="ngModel"  [(ngModel)]="homeNumber"  required class="form__input" type="text" name="flatNumber" value="" />
-            <label class="form__label label-name" for="flatNumber">
-              <span *ngIf="!numberForm.dirty && !numberForm.valid  && !numberForm.touched"  class="content-name">Numero*</span>
-              <span *ngIf="!numberForm.valid && numberForm.touched" class="content-name red">Numero*</span>
-            </label>
-          </div>
-        </div>
 
-        <div class="form form-xs">
+    
+
+        <div class="form ">
           <div class="form-mail">
-            <input #flatForm="ngModel"  [(ngModel)]="flat"  required class="form__input" type="text" name="flat" value="" />
+            <input #flatForm="ngModel"  [(ngModel)]="order.flat"  required class="form__input" type="text" name="flat" value="" />
             <label class="form__label label-name" for="flat">
-                 <span *ngIf="!flatForm.dirty && !flatForm.valid && !flatForm.touched"  class="content-name">Piso*</span>
-              <span *ngIf="!flatForm.valid && flatForm.touched" class="content-name red">Piso*</span>
+                 <span *ngIf="!flatForm.dirty && !flatForm.valid && !flatForm.touched"  class="content-name">Numero de Casa / Piso*</span>
+              <span *ngIf="!flatForm.valid && flatForm.touched" class="content-name red">Casa/Piso*</span>
             </label>
           </div>
         </div>
-
-        <div class="form form-xs">
-          <div class="form-mail">
-              <input #doorForm="ngModel"  [(ngModel)]="door" required class="form__input" type="text" name="door" value="">
-              <label class="form__label label-name" for="door">
-                  <span class="content-name">Puerta</span>
-              </label>
-          </div>
-      </div>
   </div>
 
       <div class="form">
         <div class="form-mail">
-          <input  #phoneForm="ngModel"  [(ngModel)]="phone" required class="form__input" type="tel" name="phone" value="" />
+          <input  #phoneForm="ngModel" pattern="[0-9]+"  [(ngModel)]="order.phone" required class="form__input" type="tel" name="phone" value="" />
           <label class="form__label label-name" for="phone">
             <span *ngIf="!phoneForm.dirty && !phoneForm.valid  && !phoneForm.touched"  class="content-name">Telefono*</span>
             <span *ngIf="!phoneForm.valid && phoneForm.touched" class="content-name red">Telefono no valido*</span>
@@ -155,7 +146,7 @@
       <div class="name-and-surname">
         <div class="form form-md">
           <div class="form-mail">
-            <input #cityForm="ngModel"  [(ngModel)]="city"  required class="form__input" type="text" name="city" value="" />
+            <input #cityForm="ngModel"  [(ngModel)]="order.city"  required class="form__input" type="text" name="city" value="" />
             <label class="form__label label-name" for="city">
               <span *ngIf="!cityForm.dirty && !cityForm.valid  && !cityForm.touched"  class="content-name">Ciudad*</span>
               <span *ngIf="!cityForm.valid && cityForm.touched" class="content-name red">Ciudad no valida*</span>
@@ -165,7 +156,7 @@
 
         <div class="form form-md">
           <div class="form-mail">
-            <input #zipCodeForm="ngModel"  [(ngModel)]="zipCode"  required class="form__input" type="text" name="cp" value="" />
+            <input #zipCodeForm="ngModel" pattern="[0-9]+" [(ngModel)]="order.zip"  required class="form__input" type="text" name="cp" value="" />
             <label class="form__label label-name" for="cp">
               <span *ngIf="!zipCodeForm.dirty && !zipCodeForm.valid  && !zipCodeForm.touched"  class="content-name">Codigo Postal*</span>
               <span *ngIf="!zipCodeForm.valid && zipCodeForm.touched" class="content-name red">CP no valida*</span>
@@ -173,16 +164,14 @@
           </div>
         </div> 
       </div>
-      <div class="btn-end btn-register">
-        <button [disabled]="!formPayment.valid" type="submit" class="modal__text" >Guardar</button>
-      </div>
+
     </div>
 
     <div class="step-1">
       <div>
         <div class="step-text step-pay ">
           <div class="step-icon"><i class="far fa-credit-card"></i></div>
-          <h3>2.Pago</h3>
+          <h3>3.Metodo de pago</h3>
 
         </div>
         
@@ -219,8 +208,8 @@
           <div class="form-mail">
             <input #cardCodeForm="ngModel"  [(ngModel)]="cardCode"  required class="form__input" type="number" name="code" value="" />
             <label class="form__label label-name" for="code">
-              <span *ngIf="!cardCodeForm.dirty && !cardCodeForm.valid  && !cardCodeForm.touched"  class="content-name">VCC*</span>
-              <span *ngIf="!cardCodeForm.valid && cardCodeForm.touched" class="content-name red">VCC*</span>
+              <span *ngIf="!cardCodeForm.dirty && !cardCodeForm.valid  && !cardCodeForm.touched"  class="content-name">CCV*</span>
+              <span *ngIf="!cardCodeForm.valid && cardCodeForm.touched" class="content-name red">CCV*</span>
             </label>
           </div>
         </div>
@@ -228,17 +217,11 @@
 
 
 
-      <div class="paypal">
-        <label class="lab-container">
-          <div class="icon-paypal"><i class="fab fa-cc-paypal"></i></div>
-          <input type="radio" name="radio" />
-          <span class="checkmark"></span>
-        </label>
-      </div>
-      <h3 class="total-text" >Total:<span class="total-numbers" >{{totalAmmount | currency: " " }}€ </span> </h3>
+
+      <h3  class="total-text" >Total:<span class="total-numbers" >{{totalAmmount | currency: " " }}€ </span> </h3>
       
       <div class="btn-end">
-        <button [disabled]="!formPayment.valid" type="submit" class="modal__text" >Realizar pago</button>
+        <button [disabled]="!formPayment.valid" type="submit"  class="modal__text">Realizar pago</button>
       </div>
     </div>
 
@@ -250,6 +233,17 @@
 
 
     </form>
+
+  <div *ngIf="isLogged" class="paypal-btn">
+      <div id="paypal-checkout-btn" ></div>
+  </div>
+
+
+    
+
+
+
+
 
   </main>
   <app-footer></app-footer>

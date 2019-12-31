@@ -6,7 +6,7 @@
 }
 .step-text{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     margin-top: 12px;
 }
@@ -20,6 +20,7 @@
   font-size: 24px;
   display: flex;
   justify-content: center;
+  padding-top: 40px;
 }
 
 .btn-container{
@@ -62,8 +63,6 @@
     }
 
 .step-icon{
-    position: relative;
-    left: -35px;
     font-size: 23px;
 }
 
@@ -141,7 +140,7 @@
   }
   .form-container__social {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding-top: 12px;
     padding-bottom: 12px;
   }
@@ -157,14 +156,27 @@
     color: #000 !important;
     }
 
+    .paypal-btn{
+      padding-bottom: 60px;
+      padding-top: 10px;
+    }
+
 
 @media screen and (min-width: 1024px){
 
   .body{
     margin-top: 0px;
   }
+
+  .paypal-btn{
+    padding-right: 30px;
+    padding-left: 30px;
+    align-self: center;
+    align-items: center;
+    width: 480px;
+  }
     .step-1{
-        width: 360px;
+        width: 330px;
         display: inline-block;
         margin-left: 50px;
         margin-right: 20px;
@@ -175,8 +187,7 @@
     }
 
     .user-sesion{
-      justify-content: space-between;
-      width: 300px;
+      justify-content: space-around;
     }
     .step-pay{
         margin-bottom: 25px;
@@ -185,6 +196,7 @@
         margin-left: 0px;
         margin-right: 0px;
         display: flex;
+        justify-content: center;
     }
     form{
         

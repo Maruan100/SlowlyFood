@@ -10,7 +10,7 @@
         <div class="nav-menu__logo">
           <a [routerLink]="['/']"> <img src="../../../assets/icons/logo12.png" width="125px" height="48px" alt=""></a>
         </div>
-        <div id="cart"  (click)="openCart()"  class="nav-shopping__menu"><span class="icon-number" >{{cartProductCount}}</span>
+        <div id="cart"  (click)="openCart()"  class="nav-shopping__menu"><span id="cart-number" class="icon-number" >{{cartProductCount}}</span>
           <span  class="icon icon-shopping-cart1"></span>
         </div>
         <div id="menu" class="nav-menu__display">
@@ -19,10 +19,11 @@
             <li class="nav-menu__item"><a class="nav-menu__text"(click)="closeMenuForPhone()" >Para empresas</a></li>
             <li class="nav-menu__item"><a class="nav-menu__text" (click)="closeMenuForPhone()" >¿Como funciona?</a></li>
             <li class="nav-menu__item"><a class="nav-menu__text"(click)="closeMenuForPhone()" >Contacto</a></li>
-            <li class="nav-menu__item" *ngIf="isLogged"  class="dropbtn nav-menu__item"><div class="dropdown"><a class="nav-menu__text" >Hola, <span *ngIf="users.displayName">{{users.displayName}}</span> <span *ngIf="Users" >{{Users?.name}} </span> <i class="fas fa-caret-down"></i> </a>
+            <li class="nav-menu__item" *ngIf="isLogged"  class="dropbtn nav-menu__item"><div class="dropdown"><a class="nav-menu__text" >Hola, <span *ngIf="users.displayName">{{users.displayName}} </span> <span *ngIf="Users" >{{Users?.name}} </span> <i class="fas fa-caret-down"></i> </a>
+            <li *ngIf="isLogged" class="nav-menu__item hiddenPhone"> <a class="nav-menu__text" [routerLink]="['/orders']" ><span class="icon-min icon-shopping-bag"></span>Historial de pedidos</a></li>
             <li *ngIf="isLogged" class="nav-menu__item hiddenPhone"><a class="nav-menu__text" role="button" (click)="LogOut()"><span class="icon-min icon-log-out"></span>Salir</a></li>
               <div class="dropdown-content">
-               <a role="button"><span class="icon-min icon-shopping-bag"></span>Historial de pedidos</a>
+               <a [routerLink]="['/orders']" role="button"><span class="icon-min icon-shopping-bag"></span>Historial de pedidos</a>
                <a role="button"><span class="icon-min icon-user"></span>Mi cuenta</a>        
                <a role="button" (click)=" LogOut()"><span class="icon-min icon-log-out"></span>Salir</a>
               </div>
@@ -41,12 +42,12 @@
   <div *ngFor="let item of platosAdd" class="cart__content">
   <!-- Carrito items -->
   <div class="cart__content__item">
-  <img src="{{item.image}}" alt="">
+  <img src="{{item.image}}" alt="{{item.name}} ">
   <div class="cart__content__info">
-    <h4>{{item.name}} </h4>
-    <h5>{{item.price}}€</h5>
-    <i (click)=" delateItem(item)" class="fas fa-trash"></i>
+    <h4>{{item.name}}</h4>
+    <h5>{{item.price | currency: " " }}€</h5>
   </div>
+  <i (click)=" delateItem(item)" class="fas fa-trash"></i>
   <div class="cart__content__add">
   <i class="fas fa-chevron-up"></i>
   <p class="item-amount"></p>
@@ -58,7 +59,9 @@
   <!-- Carrito footer -->
   <div class="cart__content__footer">
   <h3>Total:{{totalAmmount | currency: " " }}€<span></span> </h3>
-  <a [routerLink]="['/pago']" (click)="closeCart()" class="modal__text" role="button">Realizar Compra</a>
+
+  <a *ngIf="cartProductCount" [routerLink]="['/pago']" (click)="closeCart()"  class="modal__text" role="button">Realizar Compra</a>
+  <a *ngIf="!cartProductCount" class="modal__text disabled" role="button">Carrito vacio</a>
   </div>
  
     </div>
