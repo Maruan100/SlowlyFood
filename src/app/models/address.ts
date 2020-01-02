@@ -11,6 +11,7 @@ export class Order {
     public products: Array<Platos>,
     public totalPrice: number,
     public quantity:number,
+    public date: any,
   ) {}
 }
 

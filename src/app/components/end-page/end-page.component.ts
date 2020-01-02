@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.services';
 
 @Component({
   selector: 'app-end-page',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EndPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _cartService: CartService) {
+  }
 
   ngOnInit() {
+    this._cartService.platos.length = 0;
+    localStorage.clear();
   }
 
 }

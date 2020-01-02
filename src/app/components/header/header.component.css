@@ -19,6 +19,11 @@
   background: #555; 
 }
 
+.exit{
+  position: absolute;
+  margin-top: 140px;
+}
+
 .active{
   color: black;
 }
@@ -72,7 +77,7 @@
   .nav-menu__display {
     display: none;
     background: rgb(29,166,167);
-background: linear-gradient(0deg, rgba(29,166,167,1) 50%, rgba(63,193,201,1) 100%);
+background: linear-gradient(0deg, rgb(30, 176, 181) 50%, rgb(88, 190, 203) 100%);
     top: 0;
     left: 0;
     width: 100%;
@@ -87,6 +92,7 @@ background: linear-gradient(0deg, rgba(29,166,167,1) 50%, rgba(63,193,201,1) 100
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
+    right: 40px;
   }
   .main-header{
     position: fixed;
@@ -98,32 +104,15 @@ background: linear-gradient(0deg, rgba(29,166,167,1) 50%, rgba(63,193,201,1) 100
     display: block;
     float: none;
     width: 100%;
-    text-align: right;
+    text-align: left;
     margin-bottom: 10px;
     transition: 150ms all;
     font-size: 14px;
     padding-bottom: 12px;
+    cursor: pointer;
   }
 
-  .nav-menu__item:nth-child(1) a {
-    transition-delay: 0.1s;
-    transition-timing-function: ease-in;
-  }
-  
-  .nav-menu__item:nth-child(2) a {
-    transition-delay: 0.16s;
-    transition-timing-function: ease-in;
-  }
-  
-  .nav-menu__item:nth-child(3) a {
-    transition-delay: 0.22s;
-    transition-timing-function: ease-in;
-  }
-  
-  .nav-menu__item:nth-child(4) a {
-    transition-delay: 0.28s;
-    transition-timing-function: ease-in;
-  }
+
   
   .nav-menu__item:not(:first-child) {
     margin-left: 0;
@@ -139,7 +128,7 @@ background: linear-gradient(0deg, rgba(29,166,167,1) 50%, rgba(63,193,201,1) 100
   }
   
  .nav-menu__text{
-    padding: 10px 24px;
+    padding: 10px 27px;
     opacity: 0;
     color: #fff;
     text-transform: uppercase;
@@ -222,13 +211,13 @@ background: linear-gradient(0deg, rgba(29,166,167,1) 50%, rgba(63,193,201,1) 100
     font-size: 18px;
   }
   
+
   .hidden {
     display: none;
   }
   .hiddenPhone{
     padding-top: 12px;
     display: flex;
-    justify-content: flex-end;
     align-self: center;
   }
 
@@ -241,6 +230,10 @@ background: linear-gradient(0deg, rgba(29,166,167,1) 50%, rgba(63,193,201,1) 100
 
       .hiddenPhone{
         display: none;
+      }
+
+      .nav-menu__text{
+        padding: 10px 38px;
       }
     
       .nav-menu__display {
@@ -278,11 +271,13 @@ background: linear-gradient(0deg, rgba(29,166,167,1) 50%, rgba(63,193,201,1) 100
         opacity: 1;
         background-color: #3FC1C9;
       }
+      
       .nav-menu__list {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        left: -50px
+        left: -50px;
+        width: 920px;
       }
     
       .nav-btn {
@@ -438,7 +433,7 @@ background: linear-gradient(0deg, rgba(29,166,167,1) 50%, rgba(63,193,201,1) 100
   .fa-trash{
     margin-right: 15px;
     cursor: pointer;
-    color: #777474;
+    color: #888;
     margin-top: 58px;
     font-size: 17px;
   }

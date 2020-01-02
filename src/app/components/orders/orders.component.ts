@@ -13,15 +13,19 @@ export class OrdersComponent implements OnInit {
   public getOrders: any[];
   public getOrderByUser: Order[];
   public currentUserUid: any;
+  public loading: boolean;
  // public noOrders:boolean = true;
 
-  constructor(private afs: AngularFirestore, private _authService: AuthService,) { }
+  constructor(private afs: AngularFirestore, private _authService: AuthService) { 
+    this.loading = true;
+  }
 
   ngOnInit() {
     this.getCurrentUser();
     this.afs.collection(`Orders`).valueChanges().subscribe( item => {
       this.getOrders = item;
       this.getOrderByUser = this.getOrders.filter( order => order.userUid === this.currentUserUid);
+      this.loading = false;
       console.log(this.getOrderByUser);
     });
   }

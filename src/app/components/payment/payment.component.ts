@@ -17,11 +17,15 @@ export class PaymentComponent implements OnInit, DoCheck {
   public pass: string = '';
   public errors: string;
   public errorsRegister: string;
+
   public products: Array<Platos>;
+
   public order = {} as Order;
+  public ActualDate:any;
 
   public totalAmmount: number;
   public quantity: number;
+
 
   paidFor = false;
 
@@ -31,7 +35,7 @@ export class PaymentComponent implements OnInit, DoCheck {
     private _authService: AuthService,
     private _cartService: CartService,
   ) {
-
+    
   }
 
 
@@ -40,13 +44,11 @@ export class PaymentComponent implements OnInit, DoCheck {
     this.getCurrentUser();
     console.log(this.order);
 
-
-    this.products = this._cartService.getPlatos();
-    this.order.products = this.products;
-
+    this.order.date = this._authService.actualDate;
 
     if (this.isLogged = true) {
       this.paypalPay();
+      
     }
   }
 
@@ -87,15 +89,17 @@ export class PaymentComponent implements OnInit, DoCheck {
     this.totalAmmount = this._cartService.getTotalPrice();
     this.order.totalPrice = this.totalAmmount;
 
-    this.quantity = this._cartService.platos.length;
+    this.quantity = this._cartService.itemsInCart.length;
     this.order.quantity = this.quantity;
 
     this.errorsRegister = this._authService.errorsRegistre;
+
+    this.order.products = this._cartService.itemsInCart;
+  
   }
 
   createOrder() {
     this._authService.addOrde(this.order);
-    this._cartService.emptyCart();
   }
 
 

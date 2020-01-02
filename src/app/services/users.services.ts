@@ -16,6 +16,7 @@ export class AuthService {
   public errorsRegistre: string;
   public addressCollection: AngularFirestoreCollection<Order>;
   public orders: Array<Order>;
+  public actualDate:any;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -23,7 +24,11 @@ export class AuthService {
     private router: Router,
   ) {
    this.addressCollection = this.db.collection(`Orders`);
+
+   this.actualDate = this.addDataToOrder();
   }
+
+
 
 
   createUser(user) {
@@ -57,6 +62,11 @@ export class AuthService {
       // Direction:
 
     });
+  }
+
+  addDataToOrder(){
+    let f = new Date();
+    return f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
   }
 
 

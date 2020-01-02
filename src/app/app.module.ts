@@ -7,7 +7,6 @@ import {FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { FoodListComponent } from './components/food-list/food-list.component';
-import { CartShoppingComponent } from './components/cart-shopping/cart-shopping.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FoodCardInfoComponent } from './components/food-card-info/food-card-info.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -30,7 +29,6 @@ import { OrdersComponent } from './components/orders/orders.component';
     AppComponent,
     HomeComponent,
     FoodListComponent,
-    CartShoppingComponent,
     HeaderComponent,
     FoodCardInfoComponent,
     FooterComponent,

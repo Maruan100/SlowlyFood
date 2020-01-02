@@ -20,6 +20,13 @@
           
         <div>
 
+
+          <div class="spinner" *ngIf="loading">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+
           <div  class="foods__container" *ngIf="showAllPlato" >
 
             <div *ngFor="let plato of platos" class="foods__plato">

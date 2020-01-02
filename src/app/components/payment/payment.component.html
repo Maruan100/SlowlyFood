@@ -112,8 +112,8 @@
         <div class="form-mail">
           <input #streetForm="ngModel"  [(ngModel)]="order.street"  required class="form__input" type="text" name="street" value="" />
           <label class="form__label label-name" for="street">
-            <span *ngIf="!streetForm.dirty && !streetForm.valid  && !streetForm.touched"  class="content-name">Calle*</span>
-            <span *ngIf="!streetForm.valid && streetForm.touched" class="content-name red">Calle no valida*</span>
+            <span *ngIf="!streetForm.dirty && !streetForm.valid  && !streetForm.touched"  class="content-name">Calle y Numero*</span>
+            <span *ngIf="!streetForm.valid && streetForm.touched" class="content-name red">Calle y numero no validos*</span>
           </label>
         </div>
       </div>
@@ -126,7 +126,7 @@
           <div class="form-mail">
             <input #flatForm="ngModel"  [(ngModel)]="order.flat"  required class="form__input" type="text" name="flat" value="" />
             <label class="form__label label-name" for="flat">
-                 <span *ngIf="!flatForm.dirty && !flatForm.valid && !flatForm.touched"  class="content-name">Numero de Casa / Piso*</span>
+                 <span *ngIf="!flatForm.dirty && !flatForm.valid && !flatForm.touched"  class="content-name">Casa / Piso*</span>
               <span *ngIf="!flatForm.valid && flatForm.touched" class="content-name red">Casa/Piso*</span>
             </label>
           </div>
@@ -235,7 +235,7 @@
     </form>
 
   <div *ngIf="isLogged" class="paypal-btn">
-      <div id="paypal-checkout-btn" ></div>
+      <div  id="paypal-checkout-btn" ></div >
   </div>
 
 

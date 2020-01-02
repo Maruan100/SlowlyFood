@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit, DoCheck {
       }
   });
 
-  this.platosAdd = this._cartService.getPlatos();
+  this.platosAdd = this._cartService.itemsInCart;
 }
 
 
@@ -47,7 +47,9 @@ export class HeaderComponent implements OnInit, DoCheck {
     
     this.totalAmmount = this._cartService.getTotalPrice();
 
-    this.cartProductCount = this._cartService.platos.length;
+    this.cartProductCount = this._cartService.itemsInCart.length;
+
+    
   }
 
   delateItem(plato){

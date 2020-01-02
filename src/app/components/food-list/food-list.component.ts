@@ -26,12 +26,16 @@ export class FoodListComponent implements OnInit {
   public showSegundoPlato: boolean = false;
   public showDessertPlato: boolean = false;
 
+  public loading: boolean;
+
   // buttons
 
   constructor(
     private _platosService: PlatoServices,
     private _cartService :CartService
-  ) {}
+  ) {
+    this.loading = true;
+  }
 
   ngOnInit() {
     return (
@@ -42,7 +46,8 @@ export class FoodListComponent implements OnInit {
           } else {
           }
           this.getPrimerPlato = this.platos.filter(
-            plato => plato.category === 'primer plato'
+            plato => plato.category === 'primer plato',
+            this.loading = false
           );
           console.log(this.getPrimerPlato);
 

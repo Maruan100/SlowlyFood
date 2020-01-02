@@ -9,13 +9,14 @@ export class CartService {
 
     platos: Platos[];
 
+    itemsInCart: Platos[];
+
     constructor() {
-        this.platos = [
-            // {title: 'leet', description: 'tengo que leer',hide:true},
-            // {title: 'leer', description: 'tengo que leer3',hide:true},
-            // {title: 'leer', description: 'tengo que leer3',hide: true},
-        ]
+        this.platos = [];
+        this.itemsInCart = this.getPlatos();
     }
+
+    
 
     getPlatos() {
         if (localStorage.getItem('Platos') === null) {
@@ -24,8 +25,8 @@ export class CartService {
             this.platos = JSON.parse(localStorage.getItem('Platos'));
             return this.platos;
         }
-
     }
+
 
     addPlato(plato) {
         this.platos.push(plato);
@@ -39,6 +40,7 @@ export class CartService {
             platos.push(plato);
             localStorage.setItem('Platos', JSON.stringify(platos));
         }
+
 
         let cart = document.getElementById('cart-number');
         cart.classList.add('cart-animation');

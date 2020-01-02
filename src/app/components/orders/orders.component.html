@@ -5,34 +5,41 @@
             <div class="order-info">
                 <h5>Todos los pedidos</h5>
                 
+                <div class="spinner" *ngIf="loading">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                  </div>
 
             <div *ngFor="let order of getOrderByUser" class="order-cont">  
                 <div class="orders-container">
                     <h6 class="orders-id">Pedido:</h6>
                     <span>#54353453</span>
+                    <div><p class="date" >Fecha: {{order.date}}</p></div>
                     <h6 class="orders-quantity">Articulos: {{order.quantity}}</h6>
 
                     <div *ngFor="let pedido of order.products" class="orders_container-info">
-                        <img class="img-product"
-                            src="{{pedido.image}}" alt="" />
+                      <a [routerLink]="['/carta/plato',pedido._id]"> <img class="img-product"
+                            src="{{pedido.image}}" alt="" /> </a> 
                         <div class="orders-info">
-                            <p>{{pedido.name}}</p>
-                            <p>{{pedido.price}}€</p>
+                            <p class="info-grey" >{{pedido.name}}</p>
+                            
+                            <p class="info-black" >{{pedido.price | currency: " " }}€</p>
                         </div>
                     </div>
                 </div>
 
                     <div class="addres-container" >
-                        <p (click)="openDropDown()" class="addres-btn" >Direccion <i class="fas fa-caret-down"></i></p>
+                        <p (click)="openDropDown()" class="addres-btn date" >Direccion <i class="fas fa-caret-down"></i></p>
                         <div id="btn-dropdown" class="drowdown">
                             <div class="dropdown_container">
-                                <p>Calle: {{order.street}}</p>
-                                <p>Casa: {{order.flat}}</p>
-                                <p>Ciudad: {{order.city}}</p>
-                                <p>CP: {{order.zip}}</p>
+                               <div class="direction-cont"><p class="info-black" >Calle y Numero: </p><p class="info-grey"> {{order.street}}</p  ></div>
+                                <div class="direction-cont"><p class="info-black" >Casa: </p><p class="info-grey"> {{order.flat}}</p ></div>
+                                 <div class="direction-cont"><p class="info-black" >Ciudad: </p><p class="info-grey">  {{order.city}}</p  ></div>
+                                 <div class="direction-cont"><p class="info-black" >Codigo postal: </p><p class="info-grey">  {{order.zip}}</p  ></div>
                             </div>
                         </div>
-                        <span class="total">Total:{{order.totalPrice}}€</span>
+                        <span class="total">Total:{{order.totalPrice | currency: " "}}€</span>
                     </div>
 
 
@@ -42,4 +49,6 @@
         </div>
         </div>
     </main>
+    
+    <app-footer></app-footer>
 </div>
