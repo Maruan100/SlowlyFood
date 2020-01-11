@@ -11,11 +11,10 @@ import { CartService } from 'src/app/services/cart.services';
 })
 export class FoodListComponent implements OnInit {
 
-  @Input() platos: Platos[];
+  @Input() platos: Array<Platos>;
 
   public singleProduct;
 
-  //public platos: Array<Platos>;
 
   public getPrimerPlato: Array<Platos>;
   public getSegundoPlato: Array<Platos>;
@@ -28,7 +27,6 @@ export class FoodListComponent implements OnInit {
 
   public loading: boolean;
 
-  // buttons
 
   constructor(
     private _platosService: PlatoServices,
@@ -69,22 +67,11 @@ export class FoodListComponent implements OnInit {
 
   }
   
-
   btnAllPlato() {
     this.showPrimerPlato = false;
     this.showAllPlato = true;
     this.showSegundoPlato = false;
     this.showDessertPlato = false;
-
-    let btnALL = document.getElementById('btnAll');
-    let btnFirstPlates = document.getElementById('btnFirst');
-    let btnSecondsPlates = document.getElementById('btnSecond');
-    let btnDessertPlates = document.getElementById('btnDessert');
-
-    btnALL.classList.add('active');
-    btnFirstPlates.classList.remove('active');
-    btnSecondsPlates.classList.remove('active');
-    btnDessertPlates.classList.remove('active');
   }
 
   btnPrimerPlato() {
@@ -92,16 +79,6 @@ export class FoodListComponent implements OnInit {
     this.showAllPlato = false;
     this.showSegundoPlato = false;
     this.showDessertPlato = false;
-
-    let btnALL = document.getElementById('btnAll');
-    let btnFirstPlates = document.getElementById('btnFirst');
-    let btnSecondsPlates = document.getElementById('btnSecond');
-    let btnDessertPlates = document.getElementById('btnDessert');
-
-    btnALL.classList.remove('active');
-    btnFirstPlates.classList.add('active');
-    btnSecondsPlates.classList.remove('active');
-    btnDessertPlates.classList.remove('active');
   }
 
   btnSegundoPlato() {
@@ -109,16 +86,6 @@ export class FoodListComponent implements OnInit {
     this.showAllPlato = false;
     this.showSegundoPlato = true;
     this.showDessertPlato = false;
-
-    let btnALL = document.getElementById('btnAll');
-    let btnFirstPlates = document.getElementById('btnFirst');
-    let btnSecondsPlates = document.getElementById('btnSecond');
-    let btnDessertPlates = document.getElementById('btnDessert');
-
-    btnALL.classList.remove('active');
-    btnFirstPlates.classList.remove('active');
-    btnSecondsPlates.classList.add('active');
-    btnDessertPlates.classList.remove('active');
   }
 
   btnDessertPlato() {
@@ -126,21 +93,7 @@ export class FoodListComponent implements OnInit {
     this.showAllPlato = false;
     this.showSegundoPlato = false;
     this.showDessertPlato = true;
-
-    let btnALL = document.getElementById('btnAll');
-    let btnFirstPlates = document.getElementById('btnFirst');
-    let btnSecondsPlates = document.getElementById('btnSecond');
-    let btnDessertPlates = document.getElementById('btnDessert');
-
-    btnALL.classList.remove('active');
-    btnFirstPlates.classList.remove('active');
-    btnSecondsPlates.classList.remove('active');
-    btnDessertPlates.classList.add('active');
   }
-
-btnAnimation(){
-
-}
 
 
 addToCart(productId){

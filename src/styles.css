@@ -161,10 +161,6 @@ text-align: center;
 
 }
 
-.modal__text{
-  font-size: 16px;
-  padding: 15px;
-}
 
 .form__input {
   width: 100%;
@@ -238,6 +234,11 @@ app-home{
   padding-top: 65px;
 }
 
+.modal__text{
+  font-size: 16px;
+  padding: 15px;
+}
+
 @media screen and (min-width: 1024px){
   app-home {
     display: block;
@@ -252,3 +253,9 @@ app-home{
   }
 }
 
+
+
+
+.invalid{
+  color: #FC5185 !important;
+}

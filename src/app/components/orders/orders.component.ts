@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Order } from 'src/app/models/address';
+import { Order } from 'src/app/models/order';
 import { AuthService } from 'src/app/services/users.services';
 
 @Component({
@@ -9,12 +9,14 @@ import { AuthService } from 'src/app/services/users.services';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
+
   public isLogged: boolean = false;
   public getOrders: any[];
   public getOrderByUser: Order[];
   public currentUserUid: any;
   public loading: boolean;
- // public noOrders:boolean = true;
+  public dropdown:any;
+  public noOrders:boolean = true;
 
   constructor(private afs: AngularFirestore, private _authService: AuthService) { 
     this.loading = true;
@@ -27,6 +29,10 @@ export class OrdersComponent implements OnInit {
       this.getOrderByUser = this.getOrders.filter( order => order.userUid === this.currentUserUid);
       this.loading = false;
       console.log(this.getOrderByUser);
+    //   if(this.getOrderByUser.length === 0 ){
+    //     this.noOrders = false;
+    // }
+
     });
   }
 
@@ -44,11 +50,10 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  openDropDown(){
-    console.log('illo');
-    
-    let btn = document.querySelector('#btn-dropdown');
-    btn.classList.add('drowdown-open');
-  }
+
+  openDropDown(i){
+
+    this.dropdown = i;
+}
 
 }

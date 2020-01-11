@@ -2,6 +2,8 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../../services/users.services';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-home',
@@ -15,14 +17,26 @@ export class HomeComponent implements OnInit , DoCheck{
   public errors: string;
   public errorsRegister: string;
 
-
-
+  loginForm: FormGroup;
+  registerForm: FormGroup;
 
   constructor(
     public _authService: AuthService,
     private afAuth: AngularFireAuth,
-    private router: Router
-  ) {}
+    private router: Router,
+    public formBuilder:FormBuilder
+  ) {
+      this.loginForm = this.formBuilder.group({
+        email:['',[Validators.required,Validators.pattern(/\S+@\S+\.\S+/)]],
+        password:['',[Validators.required,Validators.minLength(7)]],
+      });
+
+      this.registerForm = this.formBuilder.group({
+        name:['',[Validators.required,Validators.pattern("[a-zA-Z]+")]],
+        email:['',[Validators.required,Validators.pattern(/\S+@\S+\.\S+/)]],
+        password:['',[Validators.required,Validators.minLength(7)]],
+      });
+     }
 
   ngOnInit() {
   }
@@ -32,19 +46,24 @@ export class HomeComponent implements OnInit , DoCheck{
   }
 
 
-  OnregisterUser(frm) {
-    this._authService.createUser(frm.value);
-  }
+async onRegister(){
+    const user = await this._authService.createUser(this.registerForm.value);
+   if (this.errorsRegister) {
+    this.errorsRegister = this._authService.errorsRegistre;
+    this.errorsRegister = 'Error al crear usuario'
+   }
+}
 
   onLoginMail(): void {
     this._authService
-      .loginEmailUser(this.email, this.pass)
+      .loginEmailUser(this.loginForm.value)
       .then(res => {
         this.router.navigate(['carta']);
       })
       .catch((err) => {
         console.log('err', err);
         this.errors = err.message;
+        this.errors = 'Email o contraseña incorrecto!';
       });
   }
   

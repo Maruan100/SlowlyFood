@@ -29,6 +29,11 @@
   padding-top: 39px;
 }
 
+.btn{
+  margin-bottom: 60px;
+  margin-top: 30px;
+}
+
 .hide{
     display: none;
 }

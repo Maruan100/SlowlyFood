@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -11,6 +11,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FoodCardInfoComponent } from './components/food-card-info/food-card-info.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { EndPageComponent } from './components/end-page/end-page.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 // Http
 import { HttpClientModule } from '@angular/common/http';
@@ -20,8 +22,7 @@ import {AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
-import { EndPageComponent } from './components/end-page/end-page.component';
-import { OrdersComponent } from './components/orders/orders.component';
+
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { OrdersComponent } from './components/orders/orders.component';
     FormsModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    ReactiveFormsModule
   ],
   
   providers: [AngularFireAuth],

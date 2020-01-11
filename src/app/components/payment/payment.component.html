@@ -18,34 +18,31 @@
       </div>
 
       <div>
-      <form #formSignIn="ngForm"  id="register-form"  (ngSubmit)="OnregisterUser(formSignIn)" action="">
+      <form [formGroup]="registerForm"  id="register-form"  (ngSubmit)="onRegister()" >
         <div class="container-form">
         <div class="form">
             <div class="form-name">
-              <input pattern="[a-zA-Z]+" ngModel #registName="ngModel" [(ngModel)]="name" required class="form__input" type="name" name="name" value="">
+              <input formControlName="name" required class="form__input" type="name" name="name" value="">
               <label class="form__label label-name" for="name">
-                <span  *ngIf="!registName.dirty || !registName.valid  && !registName.touched" class="content-name">Nombre</span>
-                <span *ngIf="!registName.valid && registName.touched" class="content-name red">Nombre no valido*</span>
+                <span [class.invalid]="registerForm.controls.name.invalid && registerForm.controls.name.dirty" class="content-name">Nombre</span>
               </label>
             </div>
           </div> 
 
           <div class="form">
             <div class="form-name">
-              <input ngModel #registEmail="ngModel"  [(ngModel)]="Registeremail" required class="form__input" type="email" name="email" value="">
+              <input formControlName="email" required class="form__input" type="text" name="email" value="">
               <label class="form__label label-name" for="email">
-                <span *ngIf="!registEmail.dirty || !registEmail.valid" class="content-name">Email</span>
-                <span *ngIf="!registEmail.valid && registEmail.touched" class="content-name red">Email no valido*</span>
+                <span [class.invalid]="registerForm.controls.email.invalid && registerForm.controls.email.dirty"  class="content-name">Email</span>
               </label>
             </div>
           </div>
 
           <div class="form">
             <div class="form-name">
-              <input ngModel #registPassword="ngModel" [(ngModel)]="registerPass"  required class="form__input" type="password" name="password" value="">
+              <input formControlName="password" required class="form__input" type="password" name="password" value="">
               <label class="form__label label-name" for="password">
-                <span *ngIf="!registPassword.dirty || !registPassword.valid" class="content-name">Contraseña</span>
-                <span *ngIf="!registPassword.valid && registPassword.touched" class="content-name red">Contraseña no valido*</span>
+                <span [class.invalid]="registerForm.controls.password.invalid && registerForm.controls.password.dirty" class="content-name">Contraseña</span>
               </label>
             </div> 
           </div>
@@ -55,31 +52,29 @@
             {{errorsRegister}}!
           </div>
 
-       <div class="btn-container"  >
-        <button [disabled]="!formSignIn.valid"  type="submit" class="modal__text">Registrarse</button>
-       </div  >
+     
+        <button [disabled]="!registerForm.valid"  type="submit" class="btn">Registrarse</button>
+ 
         </div>
       </form>
 
 
-      <form #formLogin="ngForm" id="user-form" (ngSubmit)="onLoginMail()" class="hide">
+      <form [formGroup]="loginForm" id="user-form" (ngSubmit)="onLoginMail()" class="hide">
         <div class="container-form">
         <div class="form">
             <div class="form-name">
-              <input #loginMail="ngModel" [(ngModel)]="email" required class="form__input" type="email" name="email">
+              <input formControlName="email" required class="form__input" type="text" name="email">
               <label class="form__label label-name" for="email">
-                <span *ngIf="!loginMail.dirty && !loginMail.valid"  class="content-name">Email</span>
-                <span *ngIf="!loginMail.valid && loginMail.touched" class="content-name red">Email no valido*</span>
+                <span [class.invalid]="loginForm.controls.email.invalid && loginForm.controls.email.dirty" class="content-name">Email</span>
               </label>
             </div>
           </div>
 
           <div class="form">
             <div class="form-name">
-              <input #loginPass="ngModel"  [(ngModel)]="pass" required class="form__input" type="password" name="password" value="">
+              <input  formControlName="password" required class="form__input" type="password" name="password" value="">
               <label class="form__label label-name" for="password">
-                <span *ngIf="!loginPass.dirty || !loginPass.valid && !loginPass.touched" class="content-name">Contraseña</span>
-                <span *ngIf="!loginPass.valid && loginPass.touched" class="content-name red">Contraseña no valida*</span>
+                <span [class.invalid]="loginForm.controls.password.invalid && loginForm.controls.password.dirty" class="content-name">Contraseña</span>
               </label>
             </div>
           </div>
@@ -89,16 +84,17 @@
           </div>
 
 
-        <div class="btn-container">
-        <button [disabled]="!formLogin.valid"  type="submit" class="modal__text">Iniciar Sesion</button>
-        </div>
+        
+          <button [disabled]="!loginForm.valid"  type="submit" class="btn">Iniciar Sesion</button>
+       
       </div>
       </form>
-    </div>
 
     </div>
 
-    <form *ngIf="isLogged"  #formPayment="ngForm" (ngSubmit)="createOrder()">
+    </div>
+
+    <form *ngIf="isLogged" [formGroup]="orderForm" (ngSubmit)="createOrder()">
       <div class="container-form2" >
     <div class="step-1">
       <div>
@@ -110,10 +106,9 @@
 
       <div class="form">
         <div class="form-mail">
-          <input #streetForm="ngModel"  [(ngModel)]="order.street"  required class="form__input" type="text" name="street" value="" />
+          <input formControlName="street"  required class="form__input" type="text" name="street" value="" />
           <label class="form__label label-name" for="street">
-            <span *ngIf="!streetForm.dirty && !streetForm.valid  && !streetForm.touched"  class="content-name">Calle y Numero*</span>
-            <span *ngIf="!streetForm.valid && streetForm.touched" class="content-name red">Calle y numero no validos*</span>
+            <span [class.invalid]="orderForm.controls.street.invalid && orderForm.controls.street.dirty" class="content-name">Calle y Numero*</span>
           </label>
         </div>
       </div>
@@ -124,10 +119,9 @@
 
         <div class="form ">
           <div class="form-mail">
-            <input #flatForm="ngModel"  [(ngModel)]="order.flat"  required class="form__input" type="text" name="flat" value="" />
+            <input formControlName="flat"  required class="form__input" type="text" name="flat" value="" />
             <label class="form__label label-name" for="flat">
-                 <span *ngIf="!flatForm.dirty && !flatForm.valid && !flatForm.touched"  class="content-name">Casa / Piso*</span>
-              <span *ngIf="!flatForm.valid && flatForm.touched" class="content-name red">Casa/Piso*</span>
+                 <span [class.invalid]="orderForm.controls.flat.invalid && orderForm.controls.flat.dirty" class="content-name">Casa / Piso*</span>
             </label>
           </div>
         </div>
@@ -135,10 +129,9 @@
 
       <div class="form">
         <div class="form-mail">
-          <input  #phoneForm="ngModel" pattern="[0-9]+"  [(ngModel)]="order.phone" required class="form__input" type="tel" name="phone" value="" />
+          <input formControlName="phone" required class="form__input" type="tel" name="phone" value="" />
           <label class="form__label label-name" for="phone">
-            <span *ngIf="!phoneForm.dirty && !phoneForm.valid  && !phoneForm.touched"  class="content-name">Telefono*</span>
-            <span *ngIf="!phoneForm.valid && phoneForm.touched" class="content-name red">Telefono no valido*</span>
+            <span [class.invalid]="orderForm.controls.phone.invalid && orderForm.controls.phone.dirty" class="content-name">Telefono*</span>
           </label>
         </div>
       </div>
@@ -146,20 +139,18 @@
       <div class="name-and-surname">
         <div class="form form-md">
           <div class="form-mail">
-            <input #cityForm="ngModel"  [(ngModel)]="order.city"  required class="form__input" type="text" name="city" value="" />
+            <input formControlName="city"  required class="form__input" type="text" name="city" value="" />
             <label class="form__label label-name" for="city">
-              <span *ngIf="!cityForm.dirty && !cityForm.valid  && !cityForm.touched"  class="content-name">Ciudad*</span>
-              <span *ngIf="!cityForm.valid && cityForm.touched" class="content-name red">Ciudad no valida*</span>
+              <span  [class.invalid]="orderForm.controls.city.invalid && orderForm.controls.city.dirty" class="content-name">Ciudad*</span>
             </label>
           </div>
         </div>
 
         <div class="form form-md">
           <div class="form-mail">
-            <input #zipCodeForm="ngModel" pattern="[0-9]+" [(ngModel)]="order.zip"  required class="form__input" type="text" name="cp" value="" />
+            <input formControlName="zip" required class="form__input" type="text" name="cp" value="" />
             <label class="form__label label-name" for="cp">
-              <span *ngIf="!zipCodeForm.dirty && !zipCodeForm.valid  && !zipCodeForm.touched"  class="content-name">Codigo Postal*</span>
-              <span *ngIf="!zipCodeForm.valid && zipCodeForm.touched" class="content-name red">CP no valida*</span>
+              <span [class.invalid]="orderForm.controls.zip.invalid && orderForm.controls.zip.dirty" class="content-name">Codigo Postal*</span>
             </label>
           </div>
         </div> 
@@ -185,10 +176,9 @@
 
       <div class="form">
         <div class="form-mail">
-          <input #cardNumberForm="ngModel"  [(ngModel)]="cardNumber"  required class="form__input" type="number" name="number" value="" />
+          <input formControlName="cardNumber" required class="form__input" type="text" name="number" value="" />
           <label class="form__label label-name" for="number">
-            <span *ngIf="!cardNumberForm.dirty && !cardNumberForm.valid  && !cardNumberForm.touched"  class="content-name">Numero de Tarjeta*</span>
-            <span *ngIf="!cardNumberForm.valid && cardNumberForm.touched" class="content-name red">Numero de Tarjeta no valido*</span>
+            <span [class.invalid]="orderForm.controls.cardNumber.invalid && orderForm.controls.cardNumber.dirty" class="content-name">Numero de Tarjeta*</span>
           </label>
         </div>
       </div>
@@ -196,20 +186,18 @@
       <div class="name-and-surname">
         <div class="form form-md">
           <div class="form-mail">
-            <input #nameNumberForm="ngModel"  [(ngModel)]="cardName"  required class="form__input" type="text" name="name" value="" />
+            <input formControlName="cardName" required class="form__input" type="text" name="name" value="" />
             <label class="form__label label-name" for="name">
-              <span *ngIf="!nameNumberForm.dirty && !nameNumberForm.valid  && !nameNumberForm.touched"  class="content-name">Titular*</span>
-              <span *ngIf="!nameNumberForm.valid && nameNumberForm.touched" class="content-name red">Titular no valido*</span>
+              <span [class.invalid]="orderForm.controls.cardName.invalid && orderForm.controls.cardName.dirty"   class="content-name">Titular*</span>
             </label>
           </div>
         </div>
 
         <div class="form form-xs">
           <div class="form-mail">
-            <input #cardCodeForm="ngModel"  [(ngModel)]="cardCode"  required class="form__input" type="number" name="code" value="" />
+            <input formControlName="cardCcv"  required class="form__input" type="text" name="code" value="" />
             <label class="form__label label-name" for="code">
-              <span *ngIf="!cardCodeForm.dirty && !cardCodeForm.valid  && !cardCodeForm.touched"  class="content-name">CCV*</span>
-              <span *ngIf="!cardCodeForm.valid && cardCodeForm.touched" class="content-name red">CCV*</span>
+              <span [class.invalid]="orderForm.controls.cardCcv.invalid && orderForm.controls.cardCcv.dirty" class="content-name">CCV*</span>
             </label>
           </div>
         </div>
@@ -221,7 +209,7 @@
       <h3  class="total-text" >Total:<span class="total-numbers" >{{totalAmmount | currency: " " }}€ </span> </h3>
       
       <div class="btn-end">
-        <button [disabled]="!formPayment.valid" type="submit"  class="modal__text">Realizar pago</button>
+        <button [disabled]="!orderForm.valid" type="submit" class="modal__text disabled" >Realizar pago</button>
       </div>
     </div>
 

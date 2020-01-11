@@ -16,7 +16,6 @@ export class CartService {
         this.itemsInCart = this.getPlatos();
     }
 
-    
 
     getPlatos() {
         if (localStorage.getItem('Platos') === null) {

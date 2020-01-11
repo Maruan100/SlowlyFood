@@ -1,8 +1,10 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { AuthService } from 'src/app/services/users.services';
 import { CartService } from 'src/app/services/cart.services';
-import { Order } from 'src/app/models/address';
+import { Order } from 'src/app/models/order';
 import { Platos } from 'src/app/models/platos';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 declare var paypal;
 
@@ -12,9 +14,8 @@ declare var paypal;
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit, DoCheck {
+
   public isLogged: boolean = false;
-  public email: string = '';
-  public pass: string = '';
   public errors: string;
   public errorsRegister: string;
 
@@ -25,19 +26,43 @@ export class PaymentComponent implements OnInit, DoCheck {
 
   public totalAmmount: number;
   public quantity: number;
-
-
   paidFor = false;
 
+  loginForm: FormGroup;
+  registerForm: FormGroup;
+  orderForm:FormGroup;
 
 
   constructor(
     private _authService: AuthService,
     private _cartService: CartService,
+    private router: Router,
+    public formBuilder:FormBuilder
   ) {
-    
-  }
+    this.loginForm = this.formBuilder.group({
+      email:['',[Validators.required,Validators.pattern(/\S+@\S+\.\S+/)]],
+      password:['',[Validators.required,Validators.minLength(7)]],
+    });
 
+    this.registerForm = this.formBuilder.group({
+      name:['',[Validators.required,Validators.pattern("[a-zA-Z]+")]],
+      email:['',[Validators.required,Validators.pattern(/\S+@\S+\.\S+/)]],
+      password:['',[Validators.required,Validators.minLength(7)]],
+    });
+
+    this.orderForm = this.formBuilder.group({
+      street: ['', [Validators.required]],
+      flat: ['', [Validators.required]],
+      phone: ['', [Validators.required,Validators.pattern(/^[679]{1}[0-9]{8}$/)]],
+      city: ['', [Validators.required,Validators.pattern("[a-zA-Z]+")]],
+      zip: ['', [Validators.required,Validators.maxLength(5),Validators.minLength(5),Validators.pattern(/^\d+$/)]],
+      cardNumber: ['', [Validators.required,Validators.pattern(/^\d+$/),
+       // Validators.pattern(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11}|62[0-9]{14})$/)
+      ]],
+      cardName: ['', [Validators.required,Validators.pattern("[a-zA-Z]+")]],
+      cardCcv: ['', [Validators.required,Validators.maxLength(3),Validators.pattern(/^\d+$/)]],
+    });
+  }
 
   ngOnInit() {
 
@@ -51,6 +76,9 @@ export class PaymentComponent implements OnInit, DoCheck {
       
     }
   }
+
+
+
 
 
   paypalPay() {
@@ -98,10 +126,14 @@ export class PaymentComponent implements OnInit, DoCheck {
   
   }
 
+ 
   createOrder() {
+    this.order.address = this.orderForm.value;
     this._authService.addOrde(this.order);
-  }
 
+    console.log(this.order);
+
+  }
 
 
   getCurrentUser() {
@@ -132,13 +164,13 @@ export class PaymentComponent implements OnInit, DoCheck {
   }
 
 
-
-
-  OnregisterUser(frm) {
-    this._authService.createUser(frm.value);
-
-  }
-
+  async onRegister(){
+    const user = await this._authService.createUser(this.registerForm.value);
+   if (this.errorsRegister) {
+    this.errorsRegister = this._authService.errorsRegistre;
+    this.errorsRegister = 'Error al crear usuario'
+   }
+}
 
   onLoginFacebook(): void {
     this._authService
@@ -153,12 +185,14 @@ export class PaymentComponent implements OnInit, DoCheck {
 
   onLoginMail(): void {
     this._authService
-      .loginEmailUser(this.email, this.pass)
+      .loginEmailUser(this.loginForm.value)
       .then(res => {
+        this.router.navigate(['carta']);
       })
       .catch((err) => {
         console.log('err', err);
         this.errors = err.message;
+        this.errors = 'Email o contraseña incorrecto!';
       });
   }
 

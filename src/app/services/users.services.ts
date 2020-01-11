@@ -4,7 +4,7 @@ import { auth } from 'firebase/app';
 import { map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Order } from '../models/address';
+import { Order } from '../models/order';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -29,8 +29,6 @@ export class AuthService {
   }
 
 
-
-
   createUser(user) {
     this.afAuth.auth
       .createUserWithEmailAndPassword(user.email, user.password)
@@ -41,11 +39,9 @@ export class AuthService {
           displayName: user.name
         });
 
-        this.insertUserData(useCredential).then(() => {
-     
-            this.router.navigate(['carta'])
-    
-        });
+       if(user){
+          this.router.navigate(['carta'])
+       }
       })
       .catch((err) => {
         console.log(err.message);
@@ -70,29 +66,28 @@ export class AuthService {
   }
 
 
-  addOrde(order: Order){
+  addOrde(order: Order) {
     this.addressCollection.add(order);
-    this.router.navigate(['end-page']);
+    
+    if(order){ 
+      this.router.navigate(["end-page"]);
+    }
   }
 
   getOrder() {
     return this.orders;
   }
 
-  registerUser(email: string, pass: string) {
-    return new Promise((resolve, reject) => {
-      this.afAuth.auth.createUserWithEmailAndPassword(email, pass)
-        .then((userData) => resolve(userData)),
-        err => reject(err)
-    });
-  }
 
-  loginEmailUser(email: string, pass: string) {
+
+  loginEmailUser(user) {
     return new Promise((resolve, reject) => {
-      this.afAuth.auth.signInWithEmailAndPassword(email, pass).then(
-        userData => resolve(userData),
-        err => reject(err)
-      );
+      this.afAuth.auth
+        .signInWithEmailAndPassword(user.email, user.password)
+        .then(
+          userData => resolve(userData),
+          err => reject(err)
+        );
     });
   }
 

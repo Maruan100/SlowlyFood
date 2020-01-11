@@ -13,7 +13,7 @@
         <a href="#" class="modal__close">&times; </a>
         <!-- CONTENIDO DE MODAL -->
         <div class="container">
-          <form #formLogin="ngForm"  (ngSubmit)="onLoginMail()" >
+          <form [formGroup]="loginForm" (ngSubmit)="onLoginMail()" >
           <div class=" formule form-container__sing-in">
             <div class="formule">
               <h1>Iniciar sesion</h1>
@@ -24,33 +24,33 @@
               <a href="#" class="social social--t"><span class="icon-twitter"></span></a>
             </div>
 
-              <div class="form">
-                <div class="form-name">
-                  <input #loginMail="ngModel" [(ngModel)]="email" required class="form__input" type="email" name="email">
-                  <label class="form__label label-name" for="email">
-                    <span *ngIf="!loginMail.dirty && !loginMail.valid"  class="content-name">Email</span>
-                    <span *ngIf="!loginMail.valid && loginMail.touched" class="content-name red">Email no valido*</span>
-                  </label>
-                </div>
-              </div>
+            <div class="form">
+              <div class="form-name">
+            <input formControlName="email"  required class="form__input" type="text" name="name" value="">
+            <label class="form__label label-name" for="name">
+            <span [class.invalid]="loginForm.controls.email.invalid && loginForm.controls.email.dirty" class="content-name">Email</span>
+            </label>
+            </div>
+            </div>
 
-              <div class="form">
-                <div class="form-name">
-                  <input #loginPass="ngModel"  [(ngModel)]="pass" required class="form__input" type="password" name="password" value="">
-                  <label class="form__label label-name" for="password">
-                    <span *ngIf="!loginPass.dirty || !loginPass.valid" class="content-name">Contraseña</span>
-                    <span *ngIf="!loginPass.valid && loginPass.touched" class="content-name red">Contraseña no valida*</span>
-                  </label>
-                </div>
-              </div>
+            <div class="form">
+              <div class="form-name">
+            <input formControlName="password" required class="form__input" type="password" name="name" value="">
+            <label class="form__label label-name" for="name">
+            <span [class.invalid]="loginForm.controls.password.invalid && loginForm.controls.password.dirty" class="content-name">Contraseña</span>
+            </label>
+            </div>
+
+            </div>
               
               <div class="error" *ngIf="errors" >
                 {{errors}} !
               </div>
               
             </div>
+
             <a class="forgot-password" href="#modal3">¿Has olvidado tu contraseña?</a>
-            <div id="modal3" class="modal3">
+            <!-- <div id="modal3" class="modal3">
               <div class="form-container">
                 <div class="modal__body">
                   <a href="#" class="modal__close">&times;</a>
@@ -65,10 +65,10 @@
                   </div>      
                 </div>
               </div>
-            </div>
+            </div> -->
 
             
-            <button [disabled]="!formLogin.valid"  type="submit" class="btn">Iniciar Sesion</button>
+            <button [disabled]="!loginForm.valid"  type="submit" class="btn">Iniciar Sesion</button>
             <a href="#modal2" class="modal__text2 links " role="button">O registrarte</a>
           </div>
         </form>
@@ -79,12 +79,9 @@
 
 
 
-
-
-
     <div id="modal2" class="modal2">
       <div class="form-container">
-        <form  #formSignIn="ngForm"  (ngSubmit)="OnregisterUser(formSignIn)" >
+        <form  [formGroup]="registerForm"  (ngSubmit)="onRegister()" >
         <div class="modal__body">
           <a href="#" class="modal__close">&times;</a>
           <div class="formule">
@@ -98,30 +95,27 @@
             
             <div class="form">
               <div class="form-name">
-                <input pattern="[a-zA-Z]+" ngModel #registName="ngModel" [(ngModel)]="name"  required class="form__input" type="name" name="name" value="">
+                <input formControlName="name" required class="form__input" type="name" name="name" value="">
                 <label class="form__label label-name" for="name">
-                  <span  *ngIf="!registName.dirty || !registName.valid" class="content-name">Nombre</span>
-                  <span *ngIf="!registName.valid && registName.touched" class="content-name red">Nombre no valido*</span>
+                  <span [class.invalid]="registerForm.controls.name.invalid && registerForm.controls.name.dirty" class="content-name">Nombre</span>
                 </label>
               </div>
             </div>
 
             <div class="form">
               <div class="form-name">
-                <input ngModel #registEmail="ngModel"  [(ngModel)]="Registeremail" required class="form__input" type="email" name="email" value="">
+                <input formControlName="email" required class="form__input" type="text" name="email" value="">
                 <label class="form__label label-name" for="email">
-                  <span *ngIf="!registEmail.dirty || !registEmail.valid" class="content-name">Email</span>
-                  <span *ngIf="!registEmail.valid && registEmail.touched" class="content-name red">Email no valido*</span>
+                  <span [class.invalid]="registerForm.controls.email.invalid && registerForm.controls.email.dirty" class="content-name">Email</span>
                 </label>
               </div>
             </div>
 
             <div class="form">
               <div class="form-name">
-                <input ngModel #registPassword="ngModel" [(ngModel)]="registerPass"  required class="form__input" type="password" name="password" value="">
+                <input formControlName="password" required class="form__input" type="password" name="password" value="">
                 <label class="form__label label-name" for="password">
-                  <span *ngIf="!registPassword.dirty || !registPassword.valid" class="content-name">Contraseña</span>
-                  <span *ngIf="!registPassword.valid && registPassword.touched" class="content-name red">Contraseña no valido*</span>
+                  <span [class.invalid]="registerForm.controls.password.invalid && registerForm.controls.password.dirty" class="content-name">Contraseña</span>
                 </label>
               </div> 
             </div>
@@ -130,7 +124,7 @@
              {{errorsRegister}}!
            </div>
 
-            <button [disabled]="!formSignIn.valid"  type="submit" class="btn">Registrarse</button>
+            <button [disabled]="!registerForm.valid"  type="submit" class="btn">Registrarse</button>
           </div>
         </div>
         </form>

@@ -2,19 +2,21 @@
     <main class="order">
         <div class="container-separation"  >   
         <div class="order-container">
+
             <div class="order-info">
-                <h5>Todos los pedidos</h5>
-                
+                <!-- <h5 *ngIf="noOrders" class="h5" >Aun no hay pedidos...</h5> -->
+                <h5 *ngIf="getOrderByUser" >Todos los pedidos</h5>
+               <div *ngIf="getOrderByUser" >
                 <div class="spinner" *ngIf="loading">
                     <div class="bounce1"></div>
                     <div class="bounce2"></div>
                     <div class="bounce3"></div>
                   </div>
 
-            <div *ngFor="let order of getOrderByUser" class="order-cont">  
+            <div *ngFor="let order of getOrderByUser; let i of index" class="order-cont">  
                 <div class="orders-container">
-                    <h6 class="orders-id">Pedido:</h6>
-                    <span>#54353453</span>
+                    <h6 class="orders-id">Pedido: </h6>
+                    <span> #54353453</span>
                     <div><p class="date" >Fecha: {{order.date}}</p></div>
                     <h6 class="orders-quantity">Articulos: {{order.quantity}}</h6>
 
@@ -30,13 +32,13 @@
                 </div>
 
                     <div class="addres-container" >
-                        <p (click)="openDropDown()" class="addres-btn date" >Direccion <i class="fas fa-caret-down"></i></p>
-                        <div id="btn-dropdown" class="drowdown">
+                        <p (click)="openDropDown(i)" class="addres-btn date" >Direccion <i class="fas fa-caret-down"></i></p>
+                        <div id="btn-dropdown" [class.drowdown-open]="dropdown === i" class="drowdown">
                             <div class="dropdown_container">
-                               <div class="direction-cont"><p class="info-black" >Calle y Numero: </p><p class="info-grey"> {{order.street}}</p  ></div>
-                                <div class="direction-cont"><p class="info-black" >Casa: </p><p class="info-grey"> {{order.flat}}</p ></div>
-                                 <div class="direction-cont"><p class="info-black" >Ciudad: </p><p class="info-grey">  {{order.city}}</p  ></div>
-                                 <div class="direction-cont"><p class="info-black" >Codigo postal: </p><p class="info-grey">  {{order.zip}}</p  ></div>
+                               <div class="direction-cont"><p class="info-grey"> {{order.address.street}}</p  ></div>
+                                <div class="direction-cont"><p class="info-grey"> {{order.address.flat}}</p ></div>
+                                 <div class="direction-cont"><p class="info-grey">  {{order.address.city}}</p  ></div>
+                                 <div class="direction-cont"><p class="info-grey">  {{order.address.zip}}</p  ></div>
                             </div>
                         </div>
                         <span class="total">Total:{{order.totalPrice | currency: " "}}€</span>
@@ -46,6 +48,8 @@
                   
             </div>
             </div>
+        </div> 
+
         </div>
         </div>
     </main>

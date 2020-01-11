@@ -3,11 +3,7 @@ import { Platos } from './platos';
 export class Order {
   constructor(
     public userUid: string,
-    public street: string,
-    public falt: string,
-    public phone: string,
-    public city: string,
-    public zip: string,
+    public address: Array<Address>,
     public products: Array<Platos>,
     public totalPrice: number,
     public quantity:number,
@@ -15,4 +11,10 @@ export class Order {
   ) {}
 }
 
-// public userUid: string,
+interface Address {
+   street: string,
+   flat: string,
+   phone: string,
+   city: string,
+   zip: string,
+}
