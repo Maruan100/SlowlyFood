@@ -54,12 +54,12 @@
             <div class="cart__content__info">
               <h4>{{item.name}}</h4> 
               <h5>{{item.price | currency: " " }}€</h5>
-            </div>
-            <i (click)=" delateItem(item)" class="fas fa-trash"></i>
+              <i (click)=" delateItem(item)" class="fas fa-trash"></i>
+            </div>            
             <div class="cart__content__add">
-              <i (click)="addMore(item)" class="icon icon-chevron-up"></i>
+              <i (click)="addMore(item)" class="icon-chevron-up"></i>
               <p class="item-amount">{{countArray[i]}}</p>
-              <i (click)="delateOne(item)" class="icon icon-chevron-down"></i>
+              <i (click)="delateOne(item)" class="icon-chevron-down"></i>
             </div>
           </div>
         </div>
