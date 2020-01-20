@@ -22,4 +22,5 @@ export class PlatoServices{
        this.url = 'https://slowlyfood-api.herokuapp.com/api/';
        return this._http.get(this.url + 'article/' + platoId);
      }
+     
 }

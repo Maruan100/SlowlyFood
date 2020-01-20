@@ -33,7 +33,7 @@
   border:#ccc;
   cursor: auto;
 }
-.icon-number{
+.number{
   display: flex;
   width: 19px;
   height: 19px;
@@ -42,9 +42,9 @@
   justify-content: center;
   align-items: flex-end;
   color: #3FC1C9;
-  padding-bottom: 3px;
-  font-size: 16px;
+  font-size: 15px;
   margin-right: 6px;
+  margin-bottom: 12px;
   font-weight: bold;
 }
 
@@ -364,7 +364,7 @@ background: linear-gradient(0deg, rgb(30, 176, 181) 50%, rgb(88, 190, 203) 100%)
   }
   .cart_overflow{
     max-width: 450px;
-    max-height: 360px;
+    max-height: 400px;
     overflow-y: auto;
     margin-right: 20px;
     margin-left: 10px;
@@ -450,13 +450,12 @@ background: linear-gradient(0deg, rgb(30, 176, 181) 50%, rgb(88, 190, 203) 100%)
     text-align: center;
     color: #333
   }
-  .cart__content__add{
-    margin-top: 25px;
-  }
-  .fa-chevron-up,
-  .fa-chevron-down {
+
+  .icon-chevron-down,.icon-chevron-up{
+    color: #888;
     cursor: pointer;
   }
+
   
   .cart-overlay{
     height: 100%;

@@ -219,13 +219,11 @@
 
     </div>
 
-
     </form>
 
-  <div *ngIf="isLogged" class="paypal-btn">
-      <div  id="paypal-checkout-btn" ></div >
+    <div *ngIf="isLogged" class="paypal-btn">
+      <div  *ngIf="paypalLoaded"  id="paypal-checkout-btn"  ></div>
   </div>
-
 
     
 

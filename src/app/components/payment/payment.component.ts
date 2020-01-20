@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, AfterViewInit } from '@angular/core';
 import { AuthService } from 'src/app/services/users.services';
 import { CartService } from 'src/app/services/cart.services';
 import { Order } from 'src/app/models/order';
@@ -13,10 +13,11 @@ declare var paypal;
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
-export class PaymentComponent implements OnInit, DoCheck {
+export class PaymentComponent implements OnInit, DoCheck, AfterViewInit {
 
   public isLogged: boolean = false;
   public errors: string;
+  public paypalLoaded = false;
   public errorsRegister: string;
 
   public products: Array<Platos>;
@@ -64,6 +65,10 @@ export class PaymentComponent implements OnInit, DoCheck {
     });
   }
 
+  ngAfterViewInit() {
+    this.paypalPay()
+  }
+  
   ngOnInit() {
 
     this.getCurrentUser();
@@ -73,7 +78,6 @@ export class PaymentComponent implements OnInit, DoCheck {
 
     if (this.isLogged = true) {
       this.paypalPay();
-      
     }
   }
 
@@ -107,7 +111,9 @@ export class PaymentComponent implements OnInit, DoCheck {
       onError: err => {
         console.log(err);
       }
+      
     }).render('#paypal-checkout-btn');
+    this.paypalLoaded = true;
   }
 
 
@@ -117,12 +123,12 @@ export class PaymentComponent implements OnInit, DoCheck {
     this.totalAmmount = this._cartService.getTotalPrice();
     this.order.totalPrice = this.totalAmmount;
 
-    this.quantity = this._cartService.itemsInCart.length;
+    this.quantity = this._cartService.platos.length;
     this.order.quantity = this.quantity;
 
     this.errorsRegister = this._authService.errorsRegistre;
 
-    this.order.products = this._cartService.itemsInCart;
+    this.order.products = this._cartService.platos;
   
   }
 

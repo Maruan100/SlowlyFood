@@ -8,7 +8,6 @@ import { Platos } from 'src/app/models/platos';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: []
 })
 export class HeaderComponent implements OnInit, DoCheck {
 
@@ -20,6 +19,7 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   public cartItems;
   public totalAmmount;
+  protected countArray: number[] = []
 
 
   Users: firebase.User;
@@ -38,22 +38,27 @@ export class HeaderComponent implements OnInit, DoCheck {
         console.log(user);
       }
   });
-
-  this.platosAdd = this._cartService.itemsInCart;
 }
 
-
   ngDoCheck() {
-    
     this.totalAmmount = this._cartService.getTotalPrice();
-
-    this.cartProductCount = this._cartService.itemsInCart.length;
-
-    
-  }
+    this.cartProductCount = this._cartService.platos.length;
+    const response = this._cartService.createList();
+    this.platosAdd = response[0]
+    this.countArray = response[1];
+  }  
 
   delateItem(plato){
     this._cartService.delateTask(plato);
+    this.platosAdd = [];
+  }
+
+  addMore(plato){
+    this._cartService.addPlato(plato)
+  }
+
+  delateOne(plato){
+    this._cartService.delateOne(plato)
   }
 
 
