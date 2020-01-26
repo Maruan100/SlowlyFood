@@ -11,8 +11,8 @@ export class CartService {
     totalAmount;
 
     constructor() {
-        this.platos = this.getPlatos();
-    }
+        this.platos = this.getPlatos().sort()
+      }
 
 
     getPlatos() {
@@ -44,7 +44,6 @@ export class CartService {
         setTimeout(() => {
             cart.classList.remove('cart-animation');
         }, 500);
-
     }
 
     createList(): any[] {

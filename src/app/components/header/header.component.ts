@@ -21,6 +21,8 @@ export class HeaderComponent implements OnInit, DoCheck {
   public totalAmmount;
   protected countArray: number[] = []
 
+  public cartOpened: boolean;
+
 
   Users: firebase.User;
 
@@ -28,7 +30,9 @@ export class HeaderComponent implements OnInit, DoCheck {
     private _authService: AuthService,
     private router: Router,
     private _cartService: CartService
-  ) {}
+  ) {
+    this.cartOpened = false;
+  }
 
   ngOnInit() {
     this.getCurrentUser();
@@ -44,7 +48,7 @@ export class HeaderComponent implements OnInit, DoCheck {
     this.totalAmmount = this._cartService.getTotalPrice();
     this.cartProductCount = this._cartService.platos.length;
     const response = this._cartService.createList();
-    this.platosAdd = response[0]
+    this.platosAdd = response[0];
     this.countArray = response[1];
   }  
 
@@ -61,17 +65,12 @@ export class HeaderComponent implements OnInit, DoCheck {
     this._cartService.delateOne(plato)
   }
 
-
   openCart() {
-    let element = document.getElementById('cart-menu');
-    element.classList.remove('cart');
-    element.classList.add('open-cart');
+    this.cartOpened = !this.cartOpened;
   }
-
+  
   closeCart() {
-    let element = document.getElementById('cart-menu');
-    element.classList.remove('open-cart');
-    element.classList.add('cart');
+    this.cartOpened = false;
   }
 
   closeMenuForPhone() {

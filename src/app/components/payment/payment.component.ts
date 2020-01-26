@@ -81,10 +81,6 @@ export class PaymentComponent implements OnInit, DoCheck, AfterViewInit {
     }
   }
 
-
-
-
-
   paypalPay() {
     paypal.Buttons({
       style: {
@@ -98,7 +94,7 @@ export class PaymentComponent implements OnInit, DoCheck, AfterViewInit {
           purchase_units: [{
             amount: {
               value: this.totalAmmount,
-
+              currency: 'EUR',
             }
           }]
         });
@@ -193,7 +189,7 @@ export class PaymentComponent implements OnInit, DoCheck, AfterViewInit {
     this._authService
       .loginEmailUser(this.loginForm.value)
       .then(res => {
-        this.router.navigate(['carta']);
+        // this.router.navigate(['carta']);
       })
       .catch((err) => {
         console.log('err', err);

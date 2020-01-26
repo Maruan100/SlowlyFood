@@ -41,8 +41,9 @@
   </div>
   </nav>
   </div>
+  <div  [class.close-all]="cartOpened" class="close-all" (click)="closeCart()"></div>
   <!--////Carrito de compra////-->
-  <div id="cart-menu" class="cart">
+  <div id="cart-menu" [class]="cartOpened ? 'open-cart' : 'cart'">
     <div class="cart-overlay">
       <span class=" close-cart" (click)="closeCart()">&times;</span>
       <h2 class="cart__txt">Tu carrito</h2>
