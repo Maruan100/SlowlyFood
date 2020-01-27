@@ -120,6 +120,11 @@ export class PaymentComponent implements OnInit, DoCheck, AfterViewInit {
     this.order.totalPrice = this.totalAmmount;
 
     this.quantity = this._cartService.platos.length;
+    
+    if(this.quantity === 0){
+      this.router.navigate(['carta']);
+    }
+
     this.order.quantity = this.quantity;
 
     this.errorsRegister = this._authService.errorsRegistre;
