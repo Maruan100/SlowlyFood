@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit , DoCheck{
   public pass: string = '';
   public errors: string;
   public errorsRegister: string;
+  public isLogged
 
   loginForm: FormGroup;
   registerForm: FormGroup;
@@ -39,11 +40,24 @@ export class HomeComponent implements OnInit , DoCheck{
      }
 
   ngOnInit() {
+
+      this._authService.isAuth().subscribe(auth => {
+        if (auth) {
+          console.log('user loggado');
+          this.isLogged = true;
+        } else {
+          console.log('No logado');
+          this.isLogged = false;
+        }
+      });
   }
 
   ngDoCheck() {
     this.errorsRegister = this._authService.errorsRegistre;
+    this.isLogged
   }
+
+
 
 
 async onRegister(){

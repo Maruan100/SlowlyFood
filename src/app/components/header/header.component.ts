@@ -44,12 +44,25 @@ export class HeaderComponent implements OnInit, DoCheck {
   });
 }
 
+getCurrentUser() {
+  this._authService.isAuth().subscribe(auth => {
+    if (auth) {
+      console.log('user loggado');
+      this.isLogged = true;
+    } else {
+      console.log('No logado');
+      this.isLogged = false;
+    }
+  });
+}
+
   ngDoCheck() {
     this.totalAmmount = this._cartService.getTotalPrice();
     this.cartProductCount = this._cartService.platos.length;
     const response = this._cartService.createList();
     this.platosAdd = response[0];
     this.countArray = response[1];
+    this.isLogged
   }  
 
   delateItem(plato){
@@ -79,19 +92,12 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   LogOut() {
     this._authService.logOutUser();
-    
-      this.router.navigate(['/home']);
+
+    this.router.navigate(['/home']);
+
+    this.isLogged = false;
   }
 
-  getCurrentUser() {
-    this._authService.isAuth().subscribe(auth => {
-      if (auth) {
-        console.log('user loggado');
-        this.isLogged = true;
-      } else {
-        console.log('No logado');
-        this.isLogged = false;
-      }
-    });
-  }
+
+
 }

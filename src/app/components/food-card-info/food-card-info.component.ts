@@ -24,6 +24,8 @@ export class FoodCardInfoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+      window.scroll(0,0);
+      
     this._route.params.subscribe(params => {
       const id = params['id'];
 

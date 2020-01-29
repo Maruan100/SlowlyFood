@@ -7,7 +7,7 @@
       </div>
     <!-- MODAL COMPLETA -->
 <div class="mainmodal">
-    <a href="#modal" class="modal__text second" role="button">Acceder a cuenta</a>
+    <a *ngIf="!isLogged" href="#modal" class="modal__text second" role="button">Acceder a cuenta</a>
     <div id="modal" class="modal">
       <div class="modal__body">
         <a href="#" class="modal__close">&times; </a>
@@ -79,7 +79,7 @@
 
 
 
-    <div id="modal2" class="modal2">
+    <div  id="modal2" class="modal2">
       <div class="form-container">
         <form  [formGroup]="registerForm"  (ngSubmit)="onRegister()" >
         <div class="modal__body">
@@ -130,5 +130,6 @@
         </form>
       </div>
     </div>
+
   </div>
   </div>

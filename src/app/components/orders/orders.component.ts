@@ -23,6 +23,8 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scroll(0,0);
+    
     this.getCurrentUser();
     this.afs.collection(`Orders`).valueChanges().subscribe( item => {
       this.getOrders = item;

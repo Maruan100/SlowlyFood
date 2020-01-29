@@ -22,20 +22,22 @@
           <li *ngIf="!isLogged" class="nav-menu__item"><a class="nav-menu__text" (click)="closeMenuForPhone()">Para
               empresas</a></li>
           <li class="nav-menu__item"><a class="nav-menu__text" (click)="closeMenuForPhone()">Contacto</a></li>
-          <li class="nav-menu__item" *ngIf="isLogged" class="dropbtn nav-menu__item">
-            <div class="dropdown"><a class="nav-menu__text">Hola, <span *ngIf="users && users.displayName">{{users?.displayName}}
+          <li *ngIf="isLogged" class="nav-menu__item"  class="dropbtn nav-menu__item">
+
+            <div  class="dropdown"><a class="nav-menu__text">Hola, <span *ngIf="users && users.displayName">{{users?.displayName}}
                 </span><i class="fas fa-caret-down"></i> </a>
           <li *ngIf="isLogged" class="nav-menu__item hiddenPhone"> <a class="nav-menu__text"
-              [routerLink]="['/orders']"><span class="icon-min icon-shopping-bag"></span> Historial de pedidos</a></li>
+              [routerLink]="['/orders']"> Historial de pedidos</a></li>
           <li *ngIf="isLogged" class="nav-menu__item hiddenPhone"><a class="nav-menu__text exit" role="button"
               (click)="LogOut()"><span class="icon-min icon-log-out"></span> Cerrar Sesion</a></li>
           <div class="dropdown-content">
-            <a [routerLink]="['/orders']" role="button"><span class="icon-min icon-shopping-bag"></span>Historial de
+            <a [routerLink]="['/orders']" role="button"><span class="icon-min icon-shopping-bag icon'ba"></span>Historial de
               pedidos</a>
             <a role="button"><span class="icon-min icon-user"></span>Mi cuenta</a>
             <a role="button" (click)=" LogOut()"><span class="icon-min icon-log-out"></span>Salir</a>
           </div>
       </div>
+
       </li>
       </ul>
   </div>

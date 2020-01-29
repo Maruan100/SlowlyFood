@@ -70,6 +70,7 @@ export class PaymentComponent implements OnInit, DoCheck, AfterViewInit {
   }
   
   ngOnInit() {
+    window.scroll(0,0);
 
     this.getCurrentUser();
     console.log(this.order);

@@ -37,8 +37,8 @@
 
 .number {
   display: flex;
-  width: 19px;
-  height: 19px;
+  width: 22px;
+  height: 22px;
   background-color: #fff;
   border-radius: 50%;
   justify-content: center;
@@ -46,8 +46,8 @@
   font-size: 15px;
   margin-right: 6px;
   margin-bottom: 12px;
-  padding-bottom: 20px;
   font-weight: bold;
+  align-items: center;
 }
 
 
@@ -97,6 +97,13 @@
   width: 100%;
   right: 40px;
 }
+
+.nav-menu__main{
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 2px;
+  }
 
 .main-header {
   position: fixed;
