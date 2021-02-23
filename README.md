@@ -1,8 +1,6 @@
 # SlowlyFood
 
-## DEMO LIVE: https://authentification-4a288.firebaseapp.com (recommended browser: Chrome or Brave)
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
+## DEMO LIVE: https://authentification-4a288.firebaseapp.com/carta (recommended browser: Chrome or Brave)
 
 ## Development server
 
