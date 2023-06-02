@@ -1,6 +1,6 @@
 # SlowlyFood
 
-## DEMO LIVE: https://authentification-4a288.firebaseapp.com/carta (recommended browser: Chrome or Brave)
+## DEMO LIVE: https://authentification-4a288.web.app/carta
 
 ## Development server
 
