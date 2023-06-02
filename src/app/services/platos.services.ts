@@ -14,12 +14,12 @@ export class PlatoServices{
 
 
     getPlatos():Observable<any>{
-        this.url = 'https://slowlyfood-api.herokuapp.com/api/';
+        this.url = 'https://web-production-4c95.up.railway.app/api/';
         return this._http.get(this.url + 'articles');
     }
 
      getPlato(platoId):Observable<any>{
-       this.url = 'https://slowlyfood-api.herokuapp.com/api/';
+       this.url = 'https://web-production-4c95.up.railway.app/api/';
        return this._http.get(this.url + 'article/' + platoId);
      }
      
